@@ -2,13 +2,13 @@
 
 ## Group Members:
 
-names here.(CHANGE THIS!!!!!)
-       
+Raphael Ramot
+Tudor Ganshaw
+
 # IDEAS:
 
-1 statement of the problem you are solving and/or a high level description of the project. (CHANGE THIS!!!!!)
+1. Pac-Man https://www.pacman.com/en/
 
-2 statement of the problem you are solving and/or a high level description of the project. (CHANGE THIS!!!!!)
+2. Horse Race Test Simulator
 
-3 statement of the problem you are solving and/or a high level description of the project. (CHANGE THIS!!!!!)
-
+3. Tower Defense Game
