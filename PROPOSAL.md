@@ -7,7 +7,7 @@ Tudor Ganshaw
 
 # IDEAS:
 
-1. Pac-Man https://www.pacman.com/en/
+1. Pac-Man [Pac-Man](https://www.pacman.com/en/){:target="_blank"}
 
 2. Horse Race Test Simulator
 
