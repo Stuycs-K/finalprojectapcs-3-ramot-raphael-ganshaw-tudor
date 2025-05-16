@@ -2,7 +2,7 @@
 
 ## Group Members:
 
-Raphael Ramot \n
+Raphael Ramot\
 Tudor Ganshaw
 
 # IDEAS:
