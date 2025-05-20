@@ -1,12 +1,6 @@
 
 # Technical Details:
 
-(CHANGE THIS!!!!!)
-
-A description of your technical design. This should include: 
-   
-How you will be using the topics covered in class in the project.
-
 
 PERIOD 3
     Raphael Ramot, Tudor Ganshaw
@@ -22,8 +16,6 @@ Pac-Man
 
      
 # Project Design
-
-UML Diagrams and descriptions of key algorithms, classes, and how things fit together.
 
 ![Pac-Man Class Diagram](Pac-manClass.png?raw=true "Raphael's UML Class Diagram")
 
@@ -46,8 +38,7 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 -Menu screen & score: Raphael
 
 
-
-A timeline with expected completion dates of parts of the project. (CHANGE THIS!!!!!)
+General Timeline:
 1. Map creation & display
 2. Ghost & Pac-Man
 3. Movement
