@@ -12,11 +12,13 @@ Maze Men (tentative name, may be changed at future discretion)
 
 Pac-Man:
 
-      The map will be done using a node-edge system (or an array if the node-edge system doesn't work) in which each square contains either a pellet, a power up, a wall, or is empty. Both the Ghosts and Pac-Man will be their own separate classes, which store position and status, and have methods that allow them to move around the board. Levels will be done using global variables in the main file, which update the map used depending on the value. When all pellets are collected, the level will be updated.
-      
+The map will be done using a node-edge system (or an array if the node-edge system doesn't work) in which each square contains either a pellet, a power up, a wall, or is empty. Both the Ghosts and Pac-Man will be their own separate classes, which store position and status, and have methods that allow them to move around the board. Levels will be done using global variables in the main file, which update the map used depending on the value. When all pellets are collected, the level will be updated.
+
+------
    Expanded Description:
         By the end of 1.5 weeks, we wish to have one level working, along with movement of both Pac-Man & the Ghosts, and working collection of pellets and power ups.
-        
+
+------
    Features that we wish to include by the end are different movement for each of the ghosts, a menu screen, a score system, multiple different levels, changing sprites based on state, working power ups, bonus point pellets.
 
      
