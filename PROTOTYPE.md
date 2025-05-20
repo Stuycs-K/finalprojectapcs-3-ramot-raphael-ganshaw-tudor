@@ -25,7 +25,9 @@ Pac-Man
 
 UML Diagrams and descriptions of key algorithms, classes, and how things fit together.
 
-![Pac-man Diagram](Pac-manClass.png)
+![Pac-Man Class Diagram](Pac-manClass.png?raw=true "Raphael's UML Class Diagram)
+
+![Ghost & Map Class Diagram(TudorUMLDiagramFinal.png?raw=true "Tudor's UML Class Diagram)
 
     
 # Intended pacing:
