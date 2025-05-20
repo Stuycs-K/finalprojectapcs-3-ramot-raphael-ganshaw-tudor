@@ -31,10 +31,15 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 
 
 -Pac-Man class: Raphael
+
 -Ghost class: Tudor
+
 -Map creation: Tudor
+
 -Pellets & power ups: Raphael
+
 -Pac-Man movement: Raphael
+
 -Menu screen & score: Raphael
 
 
