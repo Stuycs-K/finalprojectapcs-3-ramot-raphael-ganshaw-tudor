@@ -24,7 +24,7 @@ Pac-Man
 # Project Design
 
 UML Diagrams and descriptions of key algorithms, classes, and how things fit together.
-
+![Pac-man Diagram](Pac-manClass.png)
 
     
 # Intended pacing:
