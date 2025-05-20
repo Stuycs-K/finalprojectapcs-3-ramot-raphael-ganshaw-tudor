@@ -3,8 +3,10 @@
 
 
 PERIOD 3
-    Raphael Ramot, Tudor Ganshaw
-    Group Name (be creative and lean into it!)
+
+Raphael Ramot, Tudor Ganshaw
+    
+Maze Men (tentative name, may be changed at future discretion)
 
 Pac-Man
       The map will be done using a node-edge system (or an array if the node-edge system doesn't work) in which each square contains either a pellet, a power up, a wall, or is empty. Both the Ghosts and Pac-Man will be their own separate classes, which store position and status, and have methods that allow them to move around the board. Levels will be done using global variables in the main file, which update the map used depending on the value. When all pellets are collected, the level will be updated.
