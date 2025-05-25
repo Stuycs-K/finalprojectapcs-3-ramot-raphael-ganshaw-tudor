@@ -1,0 +1,8 @@
+This is to explain how I'll be doing the map stuff. Can be changed later, obviously.
+
+0 - Empty Space
+1 - Pellet
+2 - Power Up
+3 - Ghost
+4 - Pac-Man
+5 - Ghost Spawning Area
