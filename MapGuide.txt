@@ -3,6 +3,10 @@ This is to explain how I'll be doing the map stuff. Can be changed later, obviou
 0 - Empty Space
 1 - Pellet
 2 - Power Up
-3 - Ghost
-4 - Pac-Man
 5 - Ghost Spawning Area
+6 - Wall
+
+
+So this can all be ints because of the fact that Pac-Man and the Ghosts don't really have to be on the map.
+Like if we have a list containing all ghosts, everytime they move we can just have them check if Pac-Man is there, and if so, Pac-Man loses a life (or the ghosts
+go back to their place if Pac-Man has a power up). Should make things way easier

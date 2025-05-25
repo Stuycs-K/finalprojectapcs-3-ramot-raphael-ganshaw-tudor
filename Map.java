@@ -25,11 +25,12 @@ public static int[][] getMap(int mapNum) //dont worry about how this works, just
     ArrayList<int[]> arr = new ArrayList<int[]>();
     while(sc.hasNextLine())
     {
-      String[] line = sc.nextLine().split("\s+");
+      char[] line = sc.nextLine().toCharArray();
       int[] arr2 = new int[line.length];
+      System.out.println(Arrays.toString(line) + "\n");
       for(int i = 0; i < line.length ;i++)
         {
-          arr2[i] = Integer.parseInt(line[i]);
+          arr2[i] = line[i] -48;
         }
       arr.add(arr2);
     }
@@ -90,6 +91,43 @@ public void genItems()
 {
   //generate 2-3 items in places with pellets
 }
+
+public int[] mapDimensions()
+{
+  return new int[] {mapArr.length,mapArr[0].length};
+}
+
+public int getAt(int y, int x)
+{
+  return mapArr[y][x];
+}
+
+public int getAt(int[] location)
+{
+  return getAt(location[0],location[1]);
+}
+
+public void setAt(int y, int x, int n)
+{
+  mapArr[y][x] = n;
+}
+
+public void setAt(int[] location, int n)
+{
+setAt(location[0],location[1],n);
+}
+
+public boolean isOnScreen(int y, int x)
+{
+  return (y > 0 && y < mapArr.length-1) && (x > 0 && x < mapArr[0].length-1);
+}
+
+public boolean isOnScreen(int[] location)
+{
+  return isOnScreen(location[0],location[1]);
+}
+
+
 
 public String toString(){
   String answer = "";
