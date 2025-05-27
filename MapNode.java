@@ -21,4 +21,27 @@ public class MapNode {
         right = righ;
     }
 
+    public MapNode getUp() {
+        return up;
+    }
+    public MapNode getDown() {
+        return down;
+    }
+    public MapNode getLeft() {
+        return left;
+    }
+    public MapNode getRight() {
+        return right;
+    }
+
+    public int getObject() {
+        return obj;
+    }
+    public void setObject(int object) {
+        obj = object;
+    }
+
+    public int[] getLocation() {
+        return loc;
+    }    
 }
