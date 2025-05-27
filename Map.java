@@ -12,8 +12,9 @@ private ArrayList<MapNode> nodemap = new ArrayList<MapNode>();
 
 public Map(int mapNumber)
 {
-  mapArr = getMap(mapNumber); //getMap will take a text file and turn it into an array. The text files will be named Map1, Map2, etc. This could be changed if we generate maps randomly
-  createPellets(); // puts pellets on the map in empty spaces
+  mapArr = getMap(mapNumber);
+  toNodeMap(); //getMap will take a text file and turn it into an array. The text files will be named Map1, Map2, etc. This could be changed if we generate maps randomly
+//  createPellets(); // puts pellets on the map in empty spaces
 }
 
 
@@ -53,10 +54,10 @@ public void toNodeMap()
     for(int n = 0; n < mapArr[i].length; n++)
     {
       MapNode mapnode = new MapNode(new int[]{i,n}, mapArr[i][n]);
-      if(mapArr[i-1][n] != 6){mapnode.setUp(new MapNode(new int[]{i-1,n}, mapArr[i-1][n]))};
-      if(mapArr[i+1][n] != 6){mapnode.setDown(new MapNode(new int[]{i+1,n}, mapArr[i+1][n]))};
-      if(mapArr[i][n-1] != 6){mapnode.setLeft(new MapNode(new int[]{i,n-1}, mapArr[i][n-1]))};
-      if(mapArr[i][n+1] != 6){mapnode.setRight(new MapNode(new int[]{i,n+1}, mapArr[i][n+1]))};
+      if(isOnScreen(i-1,n) && mapArr[i-1][n] != 6){mapnode.setUp(new MapNode(new int[]{i-1,n}, mapArr[i-1][n]));}
+      if(isOnScreen(i+1,n) && mapArr[i+1][n] != 6){mapnode.setDown(new MapNode(new int[]{i+1,n}, mapArr[i+1][n]));}
+      if(isOnScreen(i,n-1) && mapArr[i][n-1] != 6){mapnode.setLeft(new MapNode(new int[]{i,n-1}, mapArr[i][n-1]));}
+      if(isOnScreen(i,n+1) && mapArr[i][n+1] != 6){mapnode.setRight(new MapNode(new int[]{i,n+1}, mapArr[i][n+1]));}
       nodemap.add(mapnode);
     }
   }
@@ -161,6 +162,14 @@ public String toString(){
   }
 
   return answer;
+}
+
+public void nodePrint()
+{
+  for(MapNode n : nodemap)
+  {
+    System.out.println(n);
+  }
 }
 
 
