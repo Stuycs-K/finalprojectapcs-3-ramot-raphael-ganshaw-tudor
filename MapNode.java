@@ -42,6 +42,6 @@ public class MapNode {
     }
 
     public int[] getLocation() {
-        return loc;
+        return location;
     }    
 }
