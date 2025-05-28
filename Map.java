@@ -165,13 +165,4 @@ public String toString(){
   return answer;
 }
 
-public void nodePrint()
-{
-  for(MapNode n : nodemap)
-  {
-    System.out.println(n);
-  }
-}
-
-
 }
