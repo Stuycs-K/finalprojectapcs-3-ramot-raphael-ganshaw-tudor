@@ -66,6 +66,10 @@ public void toNodeMap()
       if(isOnScreen(i,n+1) && mapArr[i][n+1] != 6){tiles[i][n].setRight(tiles[i][n+1]);}
     }
   }
+<<<<<<< HEAD
+
+=======
+>>>>>>> 39f0c4cb6d33e3e0f4fc7c0dfc249388fd3531b8
 }
 
 
