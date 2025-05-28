@@ -6,7 +6,7 @@ public class Map{
 private int[][] mapArr;
 private int numPellets;
 private int[] startCoords;
-private ArrayList<MapNode> nodemap = new ArrayList<MapNode>();
+private MapNode[][] tiles;
 
 
 
@@ -53,15 +53,23 @@ public void toNodeMap()
   {
     for(int n = 0; n < mapArr[i].length; n++)
     {
-      MapNode mapnode = new MapNode(new int[]{i,n}, mapArr[i][n]);
-      if(isOnScreen(i-1,n) && mapArr[i-1][n] != 6){mapnode.setUp(new MapNode(new int[]{i-1,n}, mapArr[i-1][n]));}
-      if(isOnScreen(i+1,n) && mapArr[i+1][n] != 6){mapnode.setDown(new MapNode(new int[]{i+1,n}, mapArr[i+1][n]));}
-      if(isOnScreen(i,n-1) && mapArr[i][n-1] != 6){mapnode.setLeft(new MapNode(new int[]{i,n-1}, mapArr[i][n-1]));}
-      if(isOnScreen(i,n+1) && mapArr[i][n+1] != 6){mapnode.setRight(new MapNode(new int[]{i,n+1}, mapArr[i][n+1]));}
-      nodemap.add(mapnode);
+      tiles[i][n] = new MapNode(new int[]{i,n}, mapArr[i][n]);
     }
   }
+  for(int i = 0; i < mapArr.length;i++)
+  {
+    for(int n = 0; n < mapArr[i].length; n++)
+    {
+      if(isOnScreen(i-1,n) && mapArr[i-1][n] != 6){tiles[i][n].setUp(tiles[i-1][n]);}
+      if(isOnScreen(i+1,n) && mapArr[i+1][n] != 6){tiles[i][n].setDown(tiles[i+1][n]);}
+      if(isOnScreen(i,n-1) && mapArr[i][n-1] != 6){tiles[i][n].setLeft(tiles[i][n-1]);}
+      if(isOnScreen(i,n+1) && mapArr[i][n+1] != 6){tiles[i][n].setRight(tiles[i][n+1]);}
+    }
+  }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 39f0c4cb6d33e3e0f4fc7c0dfc249388fd3531b8
 }
 
 
@@ -160,16 +168,5 @@ public String toString(){
 
   return answer;
 }
-
-public void nodePrint()
-{
-  int i = 1;
-  for(MapNode n : nodemap)
-  {
-    System.out.println(n + " " + i);
-    i++;
-  }
-}
-
 
 }
