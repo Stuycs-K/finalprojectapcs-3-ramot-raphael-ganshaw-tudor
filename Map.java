@@ -62,9 +62,6 @@ public void toNodeMap()
     }
   }
 
-
-
-
 }
 
 
@@ -166,9 +163,11 @@ public String toString(){
 
 public void nodePrint()
 {
+  int i = 1;
   for(MapNode n : nodemap)
   {
-    System.out.println(n);
+    System.out.println(n + " " + i);
+    i++;
   }
 }
 
