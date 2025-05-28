@@ -1,3 +1,7 @@
+import java.util.*;
+import java.io.*;
+
+
 public class MapNode {
     private int[] location;
     private MapNode up, left, down, right;
@@ -43,5 +47,6 @@ public class MapNode {
 
     public int[] getLocation() {
         return location;
-    }    
+    }
+
 }

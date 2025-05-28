@@ -6,13 +6,15 @@ public class Map{
 private int[][] mapArr;
 private int numPellets;
 private int[] startCoords;
+private ArrayList<MapNode> nodemap = new ArrayList<MapNode>();
 
 
 
 public Map(int mapNumber)
 {
-  mapArr = getMap(mapNumber); //getMap will take a text file and turn it into an array. The text files will be named Map1, Map2, etc. This could be changed if we generate maps randomly
-  createPellets(); // puts pellets on the map in empty spaces
+  mapArr = getMap(mapNumber);
+  toNodeMap(); //getMap will take a text file and turn it into an array. The text files will be named Map1, Map2, etc. This could be changed if we generate maps randomly
+//  createPellets(); // puts pellets on the map in empty spaces
 }
 
 
@@ -45,9 +47,28 @@ public static int[][] getMap(int mapNum) //dont worry about how this works, just
   return result;
 }
 
+public void toNodeMap()
+{
+  for(int i = 0; i < mapArr.length;i++)
+  {
+    for(int n = 0; n < mapArr[i].length; n++)
+    {
+      MapNode mapnode = new MapNode(new int[]{i,n}, mapArr[i][n]);
+      if(isOnScreen(i-1,n) && mapArr[i-1][n] != 6){mapnode.setUp(new MapNode(new int[]{i-1,n}, mapArr[i-1][n]));}
+      if(isOnScreen(i+1,n) && mapArr[i+1][n] != 6){mapnode.setDown(new MapNode(new int[]{i+1,n}, mapArr[i+1][n]));}
+      if(isOnScreen(i,n-1) && mapArr[i][n-1] != 6){mapnode.setLeft(new MapNode(new int[]{i,n-1}, mapArr[i][n-1]));}
+      if(isOnScreen(i,n+1) && mapArr[i][n+1] != 6){mapnode.setRight(new MapNode(new int[]{i,n+1}, mapArr[i][n+1]));}
+      nodemap.add(mapnode);
+    }
+  }
 
 
-public void createPellets()
+
+
+}
+
+
+/*public void createPellets()
 {
   for(int i = 0; i < mapArr.length; i++)
     {
@@ -60,7 +81,7 @@ public void createPellets()
             }
         }
     }
-}
+}*/
 
 public int getStartX()
 {
@@ -119,7 +140,7 @@ setAt(location[0],location[1],n);
 
 public boolean isOnScreen(int y, int x)
 {
-  return (y > 0 && y < mapArr.length-1) && (x > 0 && x < mapArr[0].length-1);
+  return (y > -1 && y < mapArr.length) && (x > -1 && x < mapArr[0].length);
 }
 
 public boolean isOnScreen(int[] location)
@@ -141,6 +162,14 @@ public String toString(){
   }
 
   return answer;
+}
+
+public void nodePrint()
+{
+  for(MapNode n : nodemap)
+  {
+    System.out.println(n);
+  }
 }
 
 

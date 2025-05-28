@@ -14,3 +14,7 @@ Finished createPellets which sets all empty spaces in a map into pellets.
 Started on the Ghost class, added a constructor that takes a map.
 Also added a move() command, added isOnScreen() to the Map class, added better and more set and get functions to Map.
 Updated getMap so that maps don't have to have spaces in between tiles.
+
+## 2025-05-27 - Switching Arr to Nodes
+Started on the process of switching maps from using an array to a node system.
+Tried to test if the arr to node worked, but when making a toString to debug, terminal refused to update the code I'd written and only ran old code.
