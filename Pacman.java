@@ -1,18 +1,18 @@
 public class Pacman {
-    private int[] location;
+    private MapNode location;
     private int direction;
     private boolean poweredUp;
 
-    public Pacman(int[] loc, int dir) {
+    public Pacman(MapNode loc, int dir) {
         location = loc;
         direction = dir;
         poweredUp = false;
     }
 
-    public void changeLocation(int[] loc) {
+    public void changeLocation(MapNode loc) {
         location = loc;
     }
-    public int[] getLocation() {
+    public MapNode getLocation() {
         return location;
     }
 
