@@ -24,7 +24,6 @@ for(int i = 0; i < 5; i++)
 }
 */
 
-map1.nodePrint();
 
 }
 

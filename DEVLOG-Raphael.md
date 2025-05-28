@@ -12,3 +12,6 @@ Tudor was absent so the UML diagrams are not complete with a main/game class. I 
 
 ### 2025-05-27 - Map Discussion and MapNode
 Spent 15 mins talking to Mr. K about the plan for the map and discussing ourselves how we planned to implement nodes. Then spent the rest of class writing the MapNodes class with a location; mapnodes for up, down, left, right; and an object.
+
+### 2025-05-28 - Editing map based on MapNodes
+30 mins discussing electives as a class, rest of class spent making the map work with MapNodes and changing location of pac-man and ghosts to MapNodes.
