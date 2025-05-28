@@ -21,7 +21,7 @@ public Ghost(Map map1){
 
   map = map1;
   int[] mapDimensions = map1.mapDimensions();
-  while(map1.getAt(location[0],location[1]) != 5)
+  while(map1.getAt(location[0],location[1]).getObject() != 5)
   {
     location[0] = (int) (Math.random() * mapDimensions[0]);
     location[1] = (int) (Math.random() * mapDimensions[1]);
