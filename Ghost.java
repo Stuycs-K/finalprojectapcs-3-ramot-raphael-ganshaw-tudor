@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Ghost{
 
-private int[] location = new int[2];
+private MapNode location;
 private int type; // For different ghost types, Blinky (red), Inky (blue), Pinky (pink), and Clyde (orange)
 private boolean isAfraid;
 private int direction;
@@ -21,10 +21,9 @@ public Ghost(Map map1){
 
   map = map1;
   int[] mapDimensions = map1.mapDimensions();
-  while(map1.getAt(location[0],location[1]).getObject() != 5)
+  while(location != null && location.getObject() != 5)
   {
-    location[0] = (int) (Math.random() * mapDimensions[0]);
-    location[1] = (int) (Math.random() * mapDimensions[1]);
+    location = map1.getAt((int) (Math.random() * mapDimensions[0]),(int) (Math.random() * mapDimensions[1]));
   }
   type = 1;
   isAfraid = false;
