@@ -14,7 +14,7 @@ void setup()
   for (int i = 0; i<map.mapDimensions()[1]; i++) {
     for (int n = 0; n<map.mapDimensions()[0]; n++) {
       if (mapArr[n][i]==0) {
-        pacCoords = new int[]{i,n};
+        pacCoords = new int[]{n,i};
       }
     }
   }
@@ -63,7 +63,6 @@ public int[][] getMap(int mapNum)
   char[][] lines2 = new char[lines.length][lines[0].length()];
   for (int i = 0; i<lines.length; i++) {
     lines2[i] = lines[i].toCharArray();
-    System.out.println(lines2[i]);
   }
   int[][] arr = new int[lines.length][lines[0].length()];
   for(int i = 0; i < arr.length; i++)
@@ -78,7 +77,10 @@ public int[][] getMap(int mapNum)
 public void drawTiles() {
   for (int i = 0; i<map.mapDimensions()[1]; i++) {
     for (int n = 0; n<map.mapDimensions()[0]; n++) {
-      if (map.get
+      if (map.getAt(n,i).getObject()==6)
+        fill(0);
+      else
+        fill(255);
       square(i*tileSize,n*tileSize,tileSize);
     }
   }

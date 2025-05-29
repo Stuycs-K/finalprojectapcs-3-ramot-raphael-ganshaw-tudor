@@ -43,7 +43,7 @@ public class Pacman {
         direction = newDirection;
         node = node.getRight();
       }
-      else 
+      else
         direction = "none";
     }
 
