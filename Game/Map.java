@@ -9,44 +9,25 @@ private int[] startCoords;
 private MapNode[][] tiles;
 
 
+public Map(int[][] map)
+{
+ mapArr = map; 
+   tiles = new MapNode[mapArr.length][mapArr[0].length];
+  toNodeMap();
+}
 
+/*
 public Map(int mapNumber)
 {
-  mapArr = getMap(mapNumber);
+  mapArr = Game.getMap(mapNumber);
   tiles = new MapNode[mapArr.length][mapArr[0].length];
   toNodeMap(); //getMap will take a text file and turn it into an array. The text files will be named Map1, Map2, etc. This could be changed if we generate maps randomly
 //  createPellets(); // puts pellets on the map in empty spaces
 }
+*/
 
 
-public static int[][] getMap(int mapNum) //dont worry about how this works, just know it does
-{
-  int[][] result = new int[1][1];
-  try{
-    File file = new File("Map" + mapNum + ".txt");
-    Scanner sc = new Scanner(file);
-    ArrayList<int[]> arr = new ArrayList<int[]>();
-    while(sc.hasNextLine())
-    {
-      char[] line = sc.nextLine().toCharArray();
-      int[] arr2 = new int[line.length];
-      System.out.println(Arrays.toString(line) + "\n");
-      for(int i = 0; i < line.length ;i++)
-        {
-          arr2[i] = line[i] -48;
-        }
-      arr.add(arr2);
-    }
 
-    int[][] arr3 = new int[arr.size()][arr.get(0).length];
-    for(int i = 0; i < arr3.length; i++)
-    {
-      arr3[i] = arr.get(i);
-    }
-    result = arr3;
-  }catch(FileNotFoundException e){System.out.println(e + " file not found whoops");}
-  return result;
-}
 
 public void toNodeMap()
 {
