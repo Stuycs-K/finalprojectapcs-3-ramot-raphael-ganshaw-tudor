@@ -1,29 +1,50 @@
 public class Pacman {
-    private MapNode location;
-    public int[] locationInt;
+    private MapNode node;
+    public int[] location;
     private String direction;
+    private String newDirection;
     private boolean poweredUp;
 
     public Pacman(MapNode loc, String dir) {
-        location = loc;
+        node = loc;
         direction = dir;
         poweredUp = false;
-        locationInt = loc.getLocation();
+        location = loc.getLocation();
     }
 
-    public void changeLocation(MapNode loc) {
-        location = loc;
+    public void setNode(MapNode loc) {
+        node = loc;
     }
-    public MapNode getLocation() {
-        return location;
+    public MapNode getNode() {
+        return node;
     }
 
-    public void changeDirection(String dir) {
-        direction = dir;
+    public void setDirection(String dir) {
+        newDirection = dir;
     }
     public String getDirection() {
         return direction;
     }
+    //public void changeDirection() {
+    //  if (newDirection.equals("up") && node.getUp()!=null) {
+    //    direction = newDirection;
+    //    node = node.getUp();
+    //  }
+    //  else if (newDirection.equals("down") && node.getDown()!=null) {
+    //    direction = newDirection;
+    //    node = node.getDown();
+    //  }
+    //  else if (newDirection.equals("left") && node.getLeft()!=null) {
+    //    direction = newDirection;
+    //    node = node.getLeft();
+    //  }
+    //  else if (newDirection.equals("right") && node.getRight()!=null) {
+    //    direction = newDirection;
+    //    node = node.getRight();
+    //  }
+    //  else 
+    //    direction = "none";
+    //}
 
     public void powerUp(boolean pow) {
         poweredUp = pow;
@@ -32,22 +53,22 @@ public class Pacman {
         return poweredUp;
     }
     
-    public int[] getLocationInt() {
-      return locationInt;
+    public int[] getLocation() {
+      return location;
     }
     
     public void move() {
       if (direction.equals("up")) {
-        locationInt[1]--;
+        location[1]--;
       }
       else if (direction.equals("down")) {
-        locationInt[1]++;
+        location[1]++;
       }
       else if (direction.equals("left")) {
-         locationInt[0]--;
+         location[0]--;
       }
       else if (direction.equals("right")) {
-        locationInt[0]++;
+        location[0]++;
       }
     }
 }

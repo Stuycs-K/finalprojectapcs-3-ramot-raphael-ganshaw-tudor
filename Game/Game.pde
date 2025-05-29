@@ -22,7 +22,10 @@ void draw()
   rect(0,0,1080,1566);
   drawTiles();
   fill(250, 239, 25);
-  circle(pac.locationInt[0],pac.locationInt[1],tileSize-10);
+  circle(pac.getLocation()[0],pac.getLocation()[1],tileSize-10);
+  if (pac.getLocation()[0]==pac.getNode().getLocation()[0] && pac.getLocation()[1]==pac.getNode().getLocation()[1]) {
+    pac.changeDirection();
+  }
   pac.move();
 }
 
@@ -30,16 +33,16 @@ void draw()
 void keyPressed() {
   if (key == CODED) {
     if (keyCode == UP) {
-      pac.changeDirection("up");
+      pac.setDirection("up");
     }
     else if (keyCode == DOWN) {
-      pac.changeDirection("down");
+      pac.setDirection("down");
     }
     else if (keyCode == LEFT) {
-      pac.changeDirection("left");
+      pac.setDirection("left");
     }
     else if (keyCode == RIGHT) {
-      pac.changeDirection("right");
+      pac.setDirection("right");
     }
   }
 }
