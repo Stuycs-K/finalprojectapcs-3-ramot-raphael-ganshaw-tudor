@@ -27,6 +27,9 @@ public class Pacman {
         return direction;
     }
     public void changeDirection() {
+      node.setObject(0);
+      // here we can keep score
+      
       if (newDirection.equals("up") && node.getUp()!=null) {
         direction = newDirection;
         node = node.getUp();
