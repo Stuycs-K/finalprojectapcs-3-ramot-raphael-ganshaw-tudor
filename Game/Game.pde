@@ -2,15 +2,24 @@
 Map map;
 ArrayList<Ghost> ghostList;
 Pacman pac;
-int tileSize = 54;
+static int tileSize = 26;
 
 void setup()
 {
-  size(1080,1566);
-  map = new Map(getMap(1));
+  size(754,525);
+  int[][] mapArr = getMap(1);
+  map = new Map(mapArr);
   //for(int i = 0; i < 4; i++){ghostList.add(new Ghost(map));}
-  //System.out.println(map);
-  pac = new Pacman(new MapNode(new int[]{100,100},0),"left");
+  int[] pacCoords = new int[]{0,0};
+  for (int i = 0; i<map.mapDimensions()[1]; i++) {
+    for (int n = 0; n<map.mapDimensions()[0]; n++) {
+      if (mapArr[n][i]==0) {
+        pacCoords = new int[]{n,i};
+      }
+    }
+  }
+  
+  pac = new Pacman(map.getAt(pacCoords),"left");
   
   
 }
@@ -68,6 +77,10 @@ public int[][] getMap(int mapNum)
 public void drawTiles() {
   for (int i = 0; i<map.mapDimensions()[1]; i++) {
     for (int n = 0; n<map.mapDimensions()[0]; n++) {
+      if (map.getAt(n,i).getObject()==6)
+        fill(0);
+      else
+        fill(255);
       square(i*tileSize,n*tileSize,tileSize);
     }
   }
