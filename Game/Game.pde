@@ -10,7 +10,6 @@ void setup()
   strokeWeight(0);
   int[][] mapArr = getMap(1);
   map = new Map(mapArr);
-  //for(int i = 0; i < 4; i++){ghostList.add(new Ghost(map));}
   int[] pacCoords = new int[]{0,0};
   for (int i = 0; i<map.mapDimensions()[1]; i++) {
     for (int n = 0; n<map.mapDimensions()[0]; n++) {
@@ -22,7 +21,7 @@ void setup()
   
   pac = new Pacman(map.getAt(pacCoords),"left");
   
-  
+  //for(int i = 0; i < 4; i++){ghostList.add(new Ghost(map));}
 }
 
 
