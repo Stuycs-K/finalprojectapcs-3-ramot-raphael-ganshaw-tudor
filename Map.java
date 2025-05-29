@@ -13,6 +13,7 @@ private MapNode[][] tiles;
 public Map(int mapNumber)
 {
   mapArr = getMap(mapNumber);
+  tiles = new MapNode[mapArr.length][mapArr[0].length];
   toNodeMap(); //getMap will take a text file and turn it into an array. The text files will be named Map1, Map2, etc. This could be changed if we generate maps randomly
 //  createPellets(); // puts pellets on the map in empty spaces
 }
@@ -54,9 +55,9 @@ public void toNodeMap()
     for(int n = 0; n < mapArr[i].length; n++)
     {
       tiles[i][n] = new MapNode(new int[]{i,n}, mapArr[i][n]);
-<<<<<<< HEAD
     }
   }
+
   for(int i = 0; i < mapArr.length;i++)
   {
     for(int n = 0; n < mapArr[i].length; n++)
@@ -68,25 +69,8 @@ public void toNodeMap()
     }
   }
 
-=======
-    }
-  }
-  for(int i = 0; i < mapArr.length;i++)
-  {
-    for(int n = 0; n < mapArr[i].length; n++)
-    {
-      if(isOnScreen(i-1,n) && mapArr[i-1][n] != 6){tiles[i][n].setUp(tiles[i-1][n]);}
-      if(isOnScreen(i+1,n) && mapArr[i+1][n] != 6){tiles[i][n].setDown(tiles[i+1][n]);}
-      if(isOnScreen(i,n-1) && mapArr[i][n-1] != 6){tiles[i][n].setLeft(tiles[i][n-1]);}
-      if(isOnScreen(i,n+1) && mapArr[i][n+1] != 6){tiles[i][n].setRight(tiles[i][n+1]);}
-    }
-  }
-<<<<<<< HEAD
-
-=======
->>>>>>> 39f0c4cb6d33e3e0f4fc7c0dfc249388fd3531b8
->>>>>>> f82136d30fb1684cfa55e5ff095c6edce376c3f5
 }
+
 
 
 /*public void createPellets()
@@ -169,6 +153,10 @@ public boolean isOnScreen(int[] location)
   return isOnScreen(location[0],location[1]);
 }
 
+public boolean isOnScreen(MapNode loc)
+{
+  return isOnScreen(loc.getLocation());
+}
 
 
 public String toString(){
