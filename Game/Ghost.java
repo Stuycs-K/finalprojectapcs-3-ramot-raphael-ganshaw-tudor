@@ -21,7 +21,7 @@ public Ghost(Map map1){
 
   map = map1;
   int[] mapDimensions = map1.mapDimensions();
-  while(location != null && location.getObject() != 5)
+  while(location == null || location.getObject() != 5)
   {
     location = map1.getAt((int) (Math.random() * mapDimensions[0]),(int) (Math.random() * mapDimensions[1]));
   }
@@ -34,46 +34,52 @@ public Ghost(Map map1){
 
 public void move()
 {
+  MapNode backupLocation = location;
+
   if(direction == UP)
   {
-    location[0]--;
-    if(!map.isOnScreen(location))
+    location = location.getUp();
+    if(location == null || !map.isOnScreen(location))
     {
+      location = backupLocation;
       direction = DOWN;
-      move();
+  //  location = location.getDown();
     }
   }
   if(direction == DOWN)
   {
-    location[0]++;
-    if(!map.isOnScreen(location))
+    location = location.getDown();
+    if(location == null || !map.isOnScreen(location))
     {
+      location = backupLocation;
       direction = UP;
-      move();
+  //  location = location.getUp();
     }
   }
   if(direction == LEFT)
   {
-    location[1]--;
-    if(!map.isOnScreen(location))
+    location = location.getLeft();
+    if(location == null || !map.isOnScreen(location))
     {
+      location = backupLocation;
       direction = RIGHT;
-      move();
+  //  location = location.getRight();
     }
   }
   if(direction == RIGHT)
   {
-    location[1]++;
-    if(!map.isOnScreen(location))
+    location = location.getRight();
+    if(location == null || !map.isOnScreen(location))
     {
+      location = backupLocation;
       direction = LEFT;
-      move();
+  //  location = location.getLeft();
     }
   }
 }
 
 
-public int[] getLocation()
+public MapNode getLocation()
 {
   return location;
 }
@@ -86,6 +92,11 @@ public int getType()
 public boolean isAfraid()
 {
   return isAfraid;
+}
+
+public void swapAfraid(boolean t)
+{
+  isAfraid = t;
 }
 
 public int getIntDirection()
@@ -101,7 +112,9 @@ public char getCharDirection()
 
 public String debugToString(){
   String result = "";
-  result += "Location: (" + location[0] + ", " + location[1] + ")\nType: " + type + "\nisAfraid: " + isAfraid + "\nDirection: " + (char) direction;
+  String n = null;
+  if(location != null){n = Arrays.toString(location.getLocation());}
+  result += "Location: (" + n + ")\nType: " + type + "\nisAfraid: " + isAfraid + "\nDirection: " + (char) direction;
   return result;
 }
 

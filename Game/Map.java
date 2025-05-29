@@ -9,43 +9,25 @@ private int[] startCoords;
 private MapNode[][] tiles;
 
 
+public Map(int[][] map)
+{
+ mapArr = map; 
+   tiles = new MapNode[mapArr.length][mapArr[0].length];
+  toNodeMap();
+}
 
+/*
 public Map(int mapNumber)
 {
-  mapArr = getMap(mapNumber);
+  mapArr = Game.getMap(mapNumber);
+  tiles = new MapNode[mapArr.length][mapArr[0].length];
   toNodeMap(); //getMap will take a text file and turn it into an array. The text files will be named Map1, Map2, etc. This could be changed if we generate maps randomly
 //  createPellets(); // puts pellets on the map in empty spaces
 }
+*/
 
 
-public static int[][] getMap(int mapNum) //dont worry about how this works, just know it does
-{
-  int[][] result = new int[1][1];
-  try{
-    File file = new File("Map" + mapNum + ".txt");
-    Scanner sc = new Scanner(file);
-    ArrayList<int[]> arr = new ArrayList<int[]>();
-    while(sc.hasNextLine())
-    {
-      char[] line = sc.nextLine().toCharArray();
-      int[] arr2 = new int[line.length];
-      System.out.println(Arrays.toString(line) + "\n");
-      for(int i = 0; i < line.length ;i++)
-        {
-          arr2[i] = line[i] -48;
-        }
-      arr.add(arr2);
-    }
 
-    int[][] arr3 = new int[arr.size()][arr.get(0).length];
-    for(int i = 0; i < arr3.length; i++)
-    {
-      arr3[i] = arr.get(i);
-    }
-    result = arr3;
-  }catch(FileNotFoundException e){System.out.println(e + " file not found whoops");}
-  return result;
-}
 
 public void toNodeMap()
 {
@@ -56,6 +38,7 @@ public void toNodeMap()
       tiles[i][n] = new MapNode(new int[]{i,n}, mapArr[i][n]);
     }
   }
+
   for(int i = 0; i < mapArr.length;i++)
   {
     for(int n = 0; n < mapArr[i].length; n++)
@@ -66,11 +49,9 @@ public void toNodeMap()
       if(isOnScreen(i,n+1) && mapArr[i][n+1] != 6){tiles[i][n].setRight(tiles[i][n+1]);}
     }
   }
-<<<<<<< HEAD
 
-=======
->>>>>>> 39f0c4cb6d33e3e0f4fc7c0dfc249388fd3531b8
 }
+
 
 
 /*public void createPellets()
@@ -123,12 +104,12 @@ public int[] mapDimensions()
   return new int[] {mapArr.length,mapArr[0].length};
 }
 
-public int getAt(int y, int x)
+public MapNode getAt(int y, int x)
 {
-  return mapArr[y][x];
+  return tiles[y][x];
 }
 
-public int getAt(int[] location)
+public MapNode getAt(int[] location)
 {
   return getAt(location[0],location[1]);
 }
@@ -153,6 +134,10 @@ public boolean isOnScreen(int[] location)
   return isOnScreen(location[0],location[1]);
 }
 
+public boolean isOnScreen(MapNode loc)
+{
+  return isOnScreen(loc.getLocation());
+}
 
 
 public String toString(){
