@@ -10,6 +10,7 @@ public class Pacman {
         direction = dir;
         poweredUp = false;
         location = loc.getLocation();
+        newDirection = dir;
     }
 
     public void setNode(MapNode loc) {
@@ -25,26 +26,26 @@ public class Pacman {
     public String getDirection() {
         return direction;
     }
-    //public void changeDirection() {
-    //  if (newDirection.equals("up") && node.getUp()!=null) {
-    //    direction = newDirection;
-    //    node = node.getUp();
-    //  }
-    //  else if (newDirection.equals("down") && node.getDown()!=null) {
-    //    direction = newDirection;
-    //    node = node.getDown();
-    //  }
-    //  else if (newDirection.equals("left") && node.getLeft()!=null) {
-    //    direction = newDirection;
-    //    node = node.getLeft();
-    //  }
-    //  else if (newDirection.equals("right") && node.getRight()!=null) {
-    //    direction = newDirection;
-    //    node = node.getRight();
-    //  }
-    //  else 
-    //    direction = "none";
-    //}
+    public void changeDirection() {
+      if (newDirection.equals("up") && node.getUp()!=null) {
+        direction = newDirection;
+        node = node.getUp();
+      }
+      else if (newDirection.equals("down") && node.getDown()!=null) {
+        direction = newDirection;
+        node = node.getDown();
+      }
+      else if (newDirection.equals("left") && node.getLeft()!=null) {
+        direction = newDirection;
+        node = node.getLeft();
+      }
+      else if (newDirection.equals("right") && node.getRight()!=null) {
+        direction = newDirection;
+        node = node.getRight();
+      }
+      else 
+        direction = "none";
+    }
 
     public void powerUp(boolean pow) {
         poweredUp = pow;
