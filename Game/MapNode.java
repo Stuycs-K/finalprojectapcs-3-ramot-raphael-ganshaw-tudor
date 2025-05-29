@@ -10,6 +10,11 @@ public class MapNode {
     public MapNode(int[] loc, int object) {
         location = loc;
         obj = object;
+        
+        up = null;
+        left = null;
+        down = null;
+        right = null;
     }
 
     public void setUp(MapNode above) {
