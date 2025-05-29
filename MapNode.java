@@ -49,4 +49,7 @@ public class MapNode {
         return location;
     }
 
+    public String toString(){
+        return Arrays.toString(location) + " " + obj;
+    }
 }
