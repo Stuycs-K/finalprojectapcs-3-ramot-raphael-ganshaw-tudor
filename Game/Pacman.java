@@ -1,5 +1,6 @@
 public class Pacman {
     private MapNode location;
+    public int[] locationInt;
     private String direction;
     private boolean poweredUp;
 
@@ -7,6 +8,7 @@ public class Pacman {
         location = loc;
         direction = dir;
         poweredUp = false;
+        locationInt = loc.getLocation();
     }
 
     public void changeLocation(MapNode loc) {
@@ -30,21 +32,22 @@ public class Pacman {
         return poweredUp;
     }
     
-    public void move() {
-      if (direction.equals("up") && location.getUp()!=null) {
-         moveSlowly();
-      }
-      else if (direction.equals("down") && location.getDown()!=null) {
-        moveSlowly();
-      }
-      else if (direction.equals("left") && location.getLeft()!=null) {
-        moveSlowly();
-      }
-      else if (direction.equals("right") && location.getRight()!=null) {
-        moveSlowly();
-      }
+    public int[] getLocationInt() {
+      return locationInt;
     }
-    public void moveSlowly() {
-      
+    
+    public void move() {
+      if (direction.equals("up")) {
+        locationInt[1]--;
+      }
+      else if (direction.equals("down")) {
+        locationInt[1]++;
+      }
+      else if (direction.equals("left")) {
+         locationInt[0]--;
+      }
+      else if (direction.equals("right")) {
+        locationInt[0]++;
+      }
     }
 }
