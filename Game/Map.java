@@ -11,9 +11,9 @@ private MapNode[][] tiles;
 
 public Map(int[][] map)
 {
- mapArr = map; 
+   mapArr = map; 
    tiles = new MapNode[mapArr.length][mapArr[0].length];
-  toNodeMap();
+   toNodeMap();
 }
 
 /*
