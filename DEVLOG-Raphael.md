@@ -15,3 +15,6 @@ Spent 15 mins talking to Mr. K about the plan for the map and discussing ourselv
 
 ### 2025-05-28 - Editing map based on MapNodes
 30 mins discussing electives as a class, rest of class spent making the map work with MapNodes and changing location of pac-man and ghosts to MapNodes.
+
+### 2025-05-29 - Moving to Processing and starting to create map
+We first moved all the files to Processing and did some work together with only Tudor typing, as we wanted to make sure we understood how the map worked before writing more code that expanded upon that. I moved on to work on the move function for Pac-man in the last few minutes of class.
