@@ -18,3 +18,8 @@ Updated getMap so that maps don't have to have spaces in between tiles.
 ## 2025-05-27 - Switching Arr to Nodes
 Started on the process of switching maps from using an array to a node system.
 Tried to test if the arr to node worked, but when making a toString to debug, terminal refused to update the code I'd written and only ran old code.
+
+## 2025-05-28 - Fixing up Node implementations
+Worked on converting Ghost from arr to node.
+HEAVILY improved Ghost move() command; made it actually good.
+Plans for tomorrow so I don't forget: Update UML Diagrams, check over code for Map & Ghost once more to see that everything is good, start working on Game.pde
