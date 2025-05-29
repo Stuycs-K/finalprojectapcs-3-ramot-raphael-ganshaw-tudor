@@ -35,7 +35,7 @@ public void toNodeMap()
   {
     for(int n = 0; n < mapArr[i].length; n++)
     {
-      tiles[i][n] = new MapNode(new int[]{i,n}, mapArr[i][n]);
+      tiles[i][n] = new MapNode(new int[]{i*Game.tileSize+(Game.tileSize/2),n*Game.tileSize+(Game.tileSize/2)}, mapArr[i][n]);
     }
   }
 
