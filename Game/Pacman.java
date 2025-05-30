@@ -32,22 +32,31 @@ public class Pacman {
       
       if (newDirection.equals("up") && node.getUp()!=null) {
         direction = newDirection;
-        node = node.getUp();
       }
       else if (newDirection.equals("down") && node.getDown()!=null) {
         direction = newDirection;
-        node = node.getDown();
       }
       else if (newDirection.equals("left") && node.getLeft()!=null) {
         direction = newDirection;
-        node = node.getLeft();
       }
       else if (newDirection.equals("right") && node.getRight()!=null) {
         direction = newDirection;
+      }
+      
+      if (direction.equals("up") && node.getUp()!=null) {
+        node = node.getUp();
+      }
+      else if (direction.equals("down") && node.getDown()!=null) {
+        node = node.getDown();
+      }
+      else if (direction.equals("left") && node.getLeft()!=null) {
+        node = node.getLeft();
+      }
+      else if (direction.equals("right") && node.getRight()!=null) {
         node = node.getRight();
       }
       else
-        direction = "none";
+        direction = "none"; //won't move if going into a wall
     }
 
     public void powerUp(boolean pow) {
