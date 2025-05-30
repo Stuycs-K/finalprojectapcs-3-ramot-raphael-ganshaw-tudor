@@ -9,10 +9,12 @@ ArrayList<Ghost> ghostList = new ArrayList<Ghost>();
 Pacman pac;
 static int tileSize = 26;
 
+
 void setup()
 {
   size(754,525);
   strokeWeight(0);
+  textSize(20);
   int[][] mapArr = getMap(1);
   map = new Map(mapArr);
   int[] pacCoords = new int[]{0,0};
@@ -57,6 +59,9 @@ void draw()
     */
   }
   pac.move();
+  fill(0);
+  text("Score: "+pac.getScore(),10,20);
+  
 }
 
 
