@@ -4,6 +4,7 @@ import java.io.*;
 public class Ghost{
 
 private MapNode location;
+private int[] loc;
 private int type; // For different ghost types, Blinky (red), Inky (blue), Pinky (pink), and Clyde (orange)
 private boolean isAfraid;
 private int direction;
@@ -24,13 +25,30 @@ public Ghost(Map map1){
   while(location == null || location.getObject() != 5)
   {
     location = map1.getAt((int) (Math.random() * mapDimensions[0]),(int) (Math.random() * mapDimensions[1]));
+    loc = location.getLocation();
   }
   type = 1;
   isAfraid = false;
-  direction = directionList[(int) (Math.random() * 4)];
+  //direction = directionList[(int) (Math.random() * 4)];
+  direction = UP;
 
 }
 
+public void movePixel()
+{
+       if (direction == UP) {
+        loc[1]--;
+      }
+      else if (direction == DOWN) {
+        loc[1]++;
+      }
+      else if (direction == LEFT) {
+         loc[0]--;
+      }
+      else if (direction == RIGHT) {
+        loc[0]++;
+      } 
+}
 
 public void move()
 {
@@ -39,49 +57,63 @@ public void move()
   if(direction == UP)
   {
     location = location.getUp();
-    if(location == null || !map.isOnScreen(location))
+
+    
+    if(location == null)
     {
       location = backupLocation;
-      direction = DOWN;
-  //  location = location.getDown();
     }
+    
   }
   if(direction == DOWN)
   {
     location = location.getDown();
-    if(location == null || !map.isOnScreen(location))
+    
+    if(location == null)
     {
       location = backupLocation;
-      direction = UP;
-  //  location = location.getUp();
     }
+    
   }
   if(direction == LEFT)
   {
     location = location.getLeft();
-    if(location == null || !map.isOnScreen(location))
+    
+    if(location == null)
     {
       location = backupLocation;
-      direction = RIGHT;
-  //  location = location.getRight();
     }
+    
   }
   if(direction == RIGHT)
   {
     location = location.getRight();
-    if(location == null || !map.isOnScreen(location))
+    
+    if(location == null)
     {
       location = backupLocation;
-      direction = LEFT;
-  //  location = location.getLeft();
     }
+    
   }
+  
+  
+  
+  if((int) (Math.random()*10) == 1)
+  {
+     direction = directionList[(int) (Math.random() * 4)];
+  }
+  
 }
 
 
 public MapNode getLocation()
 {
   return location;
+}
+
+public int[] getLoc()
+{
+  return loc;
 }
 
 public int getType()

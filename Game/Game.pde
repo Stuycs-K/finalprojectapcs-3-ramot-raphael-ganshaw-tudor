@@ -1,6 +1,11 @@
 //Game
+
+import java.util.*;
+import java.io.*;
+
+
 Map map;
-ArrayList<Ghost> ghostList;
+ArrayList<Ghost> ghostList = new ArrayList<Ghost>();
 Pacman pac;
 static int tileSize = 26;
 
@@ -21,7 +26,8 @@ void setup()
   
   pac = new Pacman(map.getAt(pacCoords),"left");
   
-  //for(int i = 0; i < 4; i++){ghostList.add(new Ghost(map));}
+  for(int i = 0; i < 1; i++){ghostList.add(new Ghost(map));}
+  
 }
 
 
@@ -32,6 +38,23 @@ void draw()
   circle(pac.getLocation()[0],pac.getLocation()[1],tileSize/3*2);
   if (pac.getLocation()[0]==pac.getNode().getLocation()[0] && pac.getLocation()[1]==pac.getNode().getLocation()[1]) {
     pac.changeDirection();
+  }
+  
+  
+  for(Ghost ghost : ghostList)
+  {
+    fill(239, 140, 125);
+    System.out.println(ghost.debugToString());
+    int[] loc = ghost.getLocation().getLocation();
+    circle(loc[0],loc[1],tileSize/3*2);
+    ghost.move();
+    /*
+    while(!ghost.getLoc().equals(ghost.getLocation().getLocation()))
+    {
+      ghost.movePixel();
+      
+    }
+    */
   }
   pac.move();
 }
