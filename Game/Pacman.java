@@ -4,6 +4,7 @@ public class Pacman {
     private String direction;
     private String newDirection;
     private boolean poweredUp;
+    private int score;
 
     public Pacman(MapNode loc, String dir) {
         node = loc;
@@ -27,6 +28,10 @@ public class Pacman {
         return direction;
     }
     public void changeDirection() {
+      if (node.getObject()==1)
+        score++;
+      else if (node.getObject()==2)
+        powerUp(true);
       node.setObject(0);
       // here we can keep score
       
@@ -72,16 +77,23 @@ public class Pacman {
     
     public void move() {
       if (direction.equals("up")) {
-        location[1]--;
+        location[1]-=2;
       }
       else if (direction.equals("down")) {
-        location[1]++;
+        location[1]+=2;
       }
       else if (direction.equals("left")) {
-         location[0]--;
+         location[0]-=2;
       }
       else if (direction.equals("right")) {
-        location[0]++;
+        location[0]+=2;
       }
+    }
+    
+    public int getScore() {
+      return score;
+    }
+    public void changeScore(int added) {
+      score+=added;
     }
 }
