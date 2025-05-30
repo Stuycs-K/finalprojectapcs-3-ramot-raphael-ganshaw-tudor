@@ -28,7 +28,7 @@ void setup()
 void draw()
 {
   drawTiles();
-  fill(250, 239, 25);
+  fill(255,255,0);
   circle(pac.getLocation()[0],pac.getLocation()[1],tileSize/3*2);
   if (pac.getLocation()[0]==pac.getNode().getLocation()[0] && pac.getLocation()[1]==pac.getNode().getLocation()[1]) {
     pac.changeDirection();
@@ -77,11 +77,11 @@ public void drawTiles() {
     for (int n = 0; n<map.mapDimensions()[0]; n++) {
       int obj = map.getAt(n,i).getObject();
       if (obj==6)
-        fill(0);
+        fill(0,0,255);
       else
-        fill(255);
+        fill(0);
       square(i*tileSize,n*tileSize,tileSize);
-      fill(250, 239, 25);
+      fill(234,130,229);
       if (obj==1) 
         circle(i*tileSize+(tileSize/2),n*tileSize+(tileSize/2),tileSize/6);
       if (obj==2)
