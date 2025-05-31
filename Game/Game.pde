@@ -10,6 +10,7 @@ Pacman pac;
 static int tileSize = 26;
 
 
+
 void setup()
 {
   size(754,525);
@@ -28,8 +29,8 @@ void setup()
   
   pac = new Pacman(map.getAt(pacCoords),"left");
   
-  for(int i = 0; i < 1; i++){ghostList.add(new Ghost(map));}
-  
+  for(int i = 0; i < 4; i++){ghostList.add(new Ghost(map));}
+  colorfy(ghostList);
 }
 
 
@@ -42,21 +43,17 @@ void draw()
     pac.changeDirection();
   }
   
-  
+
   for(Ghost ghost : ghostList)
   {
-    fill(239, 140, 125);
-    System.out.println(ghost.debugToString());
+    fill(ghost.colors()[0], ghost.colors()[1], ghost.colors()[2]);
     int[] loc = ghost.getLocation().getLocation();
     circle(loc[0],loc[1],tileSize/3*2);
-    ghost.move();
-    /*
-    while(!ghost.getLoc().equals(ghost.getLocation().getLocation()))
+    if(frameCount % 9 == 0)
     {
-      ghost.movePixel();
-      
+    ghost.move();
     }
-    */
+ 
   }
   pac.move();
   fill(0);
@@ -116,4 +113,26 @@ public void drawTiles() {
         circle(i*tileSize+(tileSize/2),n*tileSize+(tileSize/2),tileSize/2);
     }
   }
+}
+
+
+
+
+public static void colorfy(ArrayList<Ghost> arr)
+{
+ ArrayList<Integer> colorList = new ArrayList<Integer>();
+ for(int i = 1; i < 5; i++){colorList.add(i);}
+ Collections.shuffle(colorList);
+ for(Ghost n : arr)
+ {
+  if(colorList.size() == 0){n.setType(1); n.setColors(new int[]{255,0,0});}
+  n.setType(colorList.get(0));
+  int[] colors1 = new int[3];
+  if(n.getType() == 1){colors1 = new int[]{255,0,0};}
+  if(n.getType() == 2){colors1 = new int[]{255,184,255};}
+  if(n.getType() == 3){colors1 = new int[]{0,255,255};}
+  if(n.getType() == 4){colors1 = new int[]{255,184,82};}
+  n.setColors(colors1);
+  colorList.remove(0);
+ }
 }

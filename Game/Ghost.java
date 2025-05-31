@@ -9,6 +9,7 @@ private int type; // For different ghost types, Blinky (red), Inky (blue), Pinky
 private boolean isAfraid;
 private int direction;
 private Map map;
+private int[] colors;
 
 public final int UP = '^';; // ALL OF THESE ARE SUBJECT TO CHANGE
 public final int DOWN = 'v';
@@ -34,20 +35,30 @@ public Ghost(Map map1){
 
 }
 
-public void movePixel()
+public void movePixel(int num)
 {
-       if (direction == UP) {
-        loc[1]--;
+     if (direction == UP) {
+        loc[0]-= num;
+
       }
       else if (direction == DOWN) {
-        loc[1]++;
+        loc[0]+= num;
       }
       else if (direction == LEFT) {
-         loc[0]--;
+         loc[1]-= num;
       }
       else if (direction == RIGHT) {
-        loc[0]++;
+        loc[1] += num;
       } 
+      
+    if(loc[0] == location.getLocation()[0] && loc[1] == location.getLocation()[1])
+    {
+      if((int) (Math.random()*10) == 1)
+        {
+         direction = directionList[(int) (Math.random() * 4)];
+        }
+      move();
+    }
 }
 
 public void move()
@@ -58,7 +69,6 @@ public void move()
   {
     location = location.getUp();
 
-    
     if(location == null)
     {
       location = backupLocation;
@@ -93,18 +103,33 @@ public void move()
     {
       location = backupLocation;
     }
-    
+   
   }
   
   
-  
-  if((int) (Math.random()*10) == 1)
-  {
-     direction = directionList[(int) (Math.random() * 4)];
-  }
-  
+  if((int) (Math.random()*10) == 1 || getDirection(direction) == null)
+    {
+       ArrayList<Integer> dir = new ArrayList<Integer>();
+       for(int i = 0; i < 4; i++){dir.add(directionList[i]);}
+       Collections.shuffle(dir);
+       direction = dir.get(0);
+       while(getDirection(direction) == null)
+       {
+        direction = dir.get(0); 
+        dir.remove(0);
+       }
+    }
+
 }
 
+public MapNode getDirection(int heading)
+{
+  if(heading == UP){return location.getUp();}
+  if(heading == DOWN){return location.getDown();}
+  if(heading == LEFT){return  location.getLeft();}
+  if(heading == RIGHT){return location.getRight();}
+  return null;
+}
 
 public MapNode getLocation()
 {
@@ -119,6 +144,11 @@ public int[] getLoc()
 public int getType()
 {
   return type;
+}
+
+public void setType(int n)
+{
+ type = n; 
 }
 
 public boolean isAfraid()
@@ -141,13 +171,25 @@ public char getCharDirection()
   return (char) direction;
 }
 
+public int[] colors()
+{
+  return colors;
+}
+
+public void setColors(int[] colorList)
+{
+ colors = colorList; 
+}
+
+
+
 
 public String debugToString(){
   String result = "";
   String n = null;
   if(location != null){n = Arrays.toString(location.getLocation());}
   result += "Location: (" + n + ")\nType: " + type + "\nisAfraid: " + isAfraid + "\nDirection: " + (char) direction;
-  return result;
+  return result + "\n" + Arrays.toString(loc);
 }
 
 
