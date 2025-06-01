@@ -30,8 +30,7 @@ public Ghost(Map map1){
   }
   type = 1;
   isAfraid = false;
-  //direction = directionList[(int) (Math.random() * 4)];
-  direction = UP;
+  direction = directionList[(int) (Math.random() * 4)];
 
 }
 
@@ -122,6 +121,22 @@ public void move()
 
 }
 
+
+  
+public void die(){
+   while(location == null || location.getObject() != 5)
+  {
+    int[] mapDimensions = map.mapDimensions();
+    location = map.getAt((int) (Math.random() * mapDimensions[0]),(int) (Math.random() * mapDimensions[1]));
+    loc = location.getLocation();
+  }
+  type = 1;
+  isAfraid = false;
+  direction = directionList[(int) (Math.random() * 4)];
+}
+
+
+
 public MapNode getDirection(int heading)
 {
   if(heading == UP){return location.getUp();}
@@ -150,6 +165,7 @@ public void setType(int n)
 {
  type = n; 
 }
+
 
 public boolean isAfraid()
 {

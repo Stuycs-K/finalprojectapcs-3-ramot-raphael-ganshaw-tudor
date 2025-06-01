@@ -8,6 +8,12 @@ Map map;
 ArrayList<Ghost> ghostList = new ArrayList<Ghost>();
 Pacman pac;
 static int tileSize = 26;
+int powerUpTimer = 0;
+int[] scaredColors = new int[] {0,0,255};
+static final int spawnX = 14;
+static final int spawnY = 18;
+boolean pacDead = false;
+
 
 
 
@@ -27,6 +33,7 @@ void setup()
     }
   }
   
+  
   pac = new Pacman(map.getAt(pacCoords),"left");
   
   for(int i = 0; i < 4; i++){ghostList.add(new Ghost(map));}
@@ -36,6 +43,8 @@ void setup()
 
 void draw()
 {
+  if(!pacDead)
+  {
   drawTiles();
   fill(255,255,0);
   circle(pac.getLocation()[0],pac.getLocation()[1],tileSize/3*2);
@@ -46,19 +55,82 @@ void draw()
 
   for(Ghost ghost : ghostList)
   {
-    fill(ghost.colors()[0], ghost.colors()[1], ghost.colors()[2]);
+    if(powerUpTimer == 0)
+    {
+      fill(ghost.colors()[0], ghost.colors()[1], ghost.colors()[2]);
+    }
+    else
+    {
+      fill(scaredColors[0],scaredColors[1],scaredColors[2]);
+    }
+    
+    
     int[] loc = ghost.getLocation().getLocation();
     circle(loc[0],loc[1],tileSize/3*2);
     if(frameCount % 9 == 0)
     {
-    ghost.move();
+      ghost.move();
+    }
+    if(loc.equals(pac.getNode().getLocation()))
+    {
+      if(!ghost.isAfraid())
+        {
+          pacDead = true;
+           System.out.println("pac die :(");
+           int scoreNow = pac.getScore();
+           pac = new Pacman(map.getAt(new int[]{spawnX,spawnY}),"left");
+           pac.changeScore(scoreNow);
+           circle(pac.getLocation()[0],pac.getLocation()[1],tileSize/3*2);
+        }
+      
+      if(ghost.isAfraid())
+        {
+           ghost.die(); 
+           pac.changeScore(200);
+        }
+      
     }
  
   }
-  pac.move();
-  fill(0);
-  text("Score: "+pac.getScore(),10,20);
   
+  
+  pac.move();
+  
+  
+  if(pac.isPoweredUp())
+  {
+   if(powerUpTimer == 0)
+     {powerUpTimer = 360;}
+   for(Ghost n : ghostList)
+   {
+    n.swapAfraid(true);
+   }
+  }
+  
+  
+  if(powerUpTimer > 0){fill(255,255,255);powerUpTimer--;}
+  
+  
+  if(powerUpTimer == 0){
+   pac.powerUp(false);
+   for(Ghost n : ghostList)
+     {
+      n.swapAfraid(false);
+     }
+  }
+  
+  
+  fill(0);
+  text("Score: "+pac.getScore() + " " + powerUpTimer,10,20);
+  }
+  else
+  {
+   fill(255,255,255);
+   rect(00,00,1000,1000);
+   fill(0);
+   textSize(100);
+   text("Pac Die :(", 20, 500);
+  }
 }
 
 
@@ -95,6 +167,7 @@ public int[][] getMap(int mapNum)
      arr[i][n] = Character.getNumericValue(lines2[i][n]);
    }
   }
+
   return arr;
 }
 public void drawTiles() {

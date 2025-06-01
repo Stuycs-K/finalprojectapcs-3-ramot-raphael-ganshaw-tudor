@@ -1,3 +1,7 @@
+import java.util.*;
+import java.io.*;
+
+
 public class Pacman {
     private MapNode node;
     public int[] location;
@@ -63,6 +67,10 @@ public class Pacman {
       else
         direction = "none"; //won't move if going into a wall
     }
+
+  
+
+
 
     public void powerUp(boolean pow) {
         poweredUp = pow;
