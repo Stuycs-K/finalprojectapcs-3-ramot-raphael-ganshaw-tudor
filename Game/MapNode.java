@@ -8,7 +8,7 @@ public class MapNode {
     private int obj;
 
     public MapNode(int[] loc, int object) {
-        location = loc;
+        location = Arrays.copyOf(loc,loc.length);
         obj = object;
         
         up = null;
