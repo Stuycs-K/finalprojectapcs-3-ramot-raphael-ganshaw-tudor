@@ -47,6 +47,8 @@ public void toNodeMap()
       if(isOnScreen(i+1,n) && mapArr[i+1][n] != 6){tiles[i][n].setDown(tiles[i+1][n]);}
       if(isOnScreen(i,n-1) && mapArr[i][n-1] != 6){tiles[i][n].setLeft(tiles[i][n-1]);}
       if(isOnScreen(i,n+1) && mapArr[i][n+1] != 6){tiles[i][n].setRight(tiles[i][n+1]);}
+      if(n == 0){tiles[i][n].setLeft(tiles[i][mapArr[i].length-1]);}
+      if(n == mapArr[i].length-1){tiles[i][n].setRight(tiles[i][0]);}
     }
   }
 

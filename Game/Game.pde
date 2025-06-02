@@ -8,10 +8,10 @@ Map map;
 ArrayList<Ghost> ghostList = new ArrayList<Ghost>();
 Pacman pac;
 static int tileSize = 26;
-int powerUpTimer = 0;
+static int powerUpTimer = 0;
 int[] scaredColors = new int[] {0,0,255};
-static final int spawnX = 14;
-static final int spawnY = 18;
+static final int spawnX = 18;
+static final int spawnY = 14;
 boolean pacDead = false;
 
 
@@ -33,13 +33,14 @@ void setup()
     }
   }
   
-  
+
   pac = new Pacman(map.getAt(pacCoords),"left");
   
   for(int i = 0; i < 4; i++){ghostList.add(new Ghost(map));}
   colorfy(ghostList);
+           System.out.println(map.getAt(new int[]{spawnX,spawnY}));
 }
-
+//377, 481 -- spawn coords
 
 void draw()
 {
@@ -75,8 +76,9 @@ void draw()
     {
       if(!ghost.isAfraid())
         {
-          pacDead = true;
+            //pacDead = true;
            System.out.println("pac die :(");
+           System.out.println(map.getAt(new int[]{spawnX,spawnY}));
            int scoreNow = pac.getScore();
            pac = new Pacman(map.getAt(new int[]{spawnX,spawnY}),"left");
            pac.changeScore(scoreNow);
@@ -99,8 +101,6 @@ void draw()
   
   if(pac.isPoweredUp())
   {
-   if(powerUpTimer == 0)
-     {powerUpTimer = 360;}
    for(Ghost n : ghostList)
    {
     n.swapAfraid(true);
@@ -129,7 +129,7 @@ void draw()
    rect(00,00,1000,1000);
    fill(0);
    textSize(100);
-   text("Pac Die :(", 20, 500);
+   text("Pac Die :(\nScore: " + pac.getScore(), 20, 400);
   }
 }
 
@@ -187,7 +187,6 @@ public void drawTiles() {
     }
   }
 }
-
 
 
 
