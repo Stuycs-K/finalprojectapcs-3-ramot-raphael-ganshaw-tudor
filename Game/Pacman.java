@@ -17,6 +17,8 @@ public class Pacman {
         location = loc.getLocation();
         newDirection = dir;
     }
+    
+
 
     public void setNode(MapNode loc) {
         node = loc;
@@ -33,9 +35,13 @@ public class Pacman {
     }
     public void changeDirection() {
       if (node.getObject()==1)
-        score++;
+        changeScore(10);
       else if (node.getObject()==2)
+      {
+        changeScore(50);
+        Game.powerUpTimer = 360;
         powerUp(true);
+      }
       node.setObject(0);
       // here we can keep score
       
@@ -92,9 +98,11 @@ public class Pacman {
       }
       else if (direction.equals("left")) {
          location[0]-=2;
+         if(location[0] < 0){location[0] += 754;}
       }
       else if (direction.equals("right")) {
         location[0]+=2;
+        if(location[0] > 754){location[0] -= 754;}
       }
     }
     
