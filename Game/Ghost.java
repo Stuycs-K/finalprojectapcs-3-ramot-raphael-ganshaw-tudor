@@ -79,6 +79,7 @@ public void die(){
   type = 1;
   isAfraid = false;
   direction = directionList[(int) (Math.random() * 4)];
+  move();
 }
 
 

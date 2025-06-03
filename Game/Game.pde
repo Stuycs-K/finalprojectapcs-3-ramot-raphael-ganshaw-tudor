@@ -71,14 +71,9 @@ void draw()
     {
       if(!ghost.isAfraid())
         {
-            //pacDead = true;
-           System.out.println("pac die :(");
            pac.setNode(map.getAt(pacSpawn));
-           System.out.println(map.getAt(pacSpawn).getLocation()[0]+" "+map.getAt(pacSpawn).getLocation()[1]);
            pac.setLoc(pac.getNode().getLocation());
-           System.out.println(pac.getNode().getLocation()[0]+" "+pac.getNode().getLocation()[1]);
            circle(pac.getLocation()[0],pac.getLocation()[1],tileSize/3*2);
-           System.out.println(pac.getLocation()[0]+" "+pac.getLocation()[1]);
         }
       
       if(ghost.isAfraid())
@@ -118,14 +113,6 @@ void draw()
   
   fill(0);
   text("Score: "+pac.getScore() + "   Power-up timer: " + powerUpTimer,10,20);
-  }
-  else
-  {
-   fill(255,255,255);
-   rect(00,00,1000,1000);
-   fill(0);
-   textSize(100);
-   text("Pac Die :(\nScore: " + pac.getScore(), 20, 400);
   }
 }
 
