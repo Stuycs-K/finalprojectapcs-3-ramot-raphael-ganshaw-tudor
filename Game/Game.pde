@@ -18,6 +18,9 @@ int lives = 3;
 static int screenWidth;
 
 
+boolean invincible = false;
+
+
 
 
 void setup()
@@ -47,10 +50,9 @@ void setup()
 
 void draw()
 {
-  
   if(numPellets == 0)
     {
-
+      int scoreNow = pac.getScore();
       textSize(20);
       int[][] mapArr = getMap(1);
       map = new Map(mapArr);
@@ -71,6 +73,7 @@ void draw()
         }
       for(int i = 0; i < ghostCount; i++){ghostList.add(new Ghost(map));}
       colorfy(ghostList);
+      pac.changeScore(scoreNow);
     }
     
     
@@ -103,7 +106,7 @@ void draw()
     ghost.movePixel(2);
     if(Math.abs(ghost.getLoc()[0]-pac.getLocation()[0])<=2 && Math.abs(ghost.getLoc()[1]-pac.getLocation()[1])<=2)
     {
-      if(!ghost.isAfraid() && immunityTimer == 0)
+      if(!ghost.isAfraid() && immunityTimer == 0 && !invincible)
         {  
            lives--;
            if(lives > 0)
@@ -152,7 +155,7 @@ void draw()
   
   
   fill(0);
-  text("Score: "+pac.getScore() + "   Power-Up Timer: " + powerUpTimer + " NumPellets: " + numPellets,10,20);
+  text("Score: "+pac.getScore() + "   Power-Up Timer: " + powerUpTimer + " NumPellets: " + numPellets + " " + invincible,10,20);
   }
   else{
     
@@ -176,6 +179,14 @@ void keyPressed() {
     else if (keyCode == RIGHT) {
       pac.setDirection("right");
     }
+  }
+  if (key == 'I' || key == 'i')
+  {
+   invincible = !invincible; 
+  }
+  if ( key == 'p' || key == 'P')
+  {
+   numPellets = 10; 
   }
 }
 
