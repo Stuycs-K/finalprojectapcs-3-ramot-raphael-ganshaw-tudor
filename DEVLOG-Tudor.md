@@ -23,3 +23,15 @@ Tried to test if the arr to node worked, but when making a toString to debug, te
 Worked on converting Ghost from arr to node.
 HEAVILY improved Ghost move() command; made it actually good.
 Plans for tomorrow so I don't forget: Update UML Diagrams, check over code for Map & Ghost once more to see that everything is good, start working on Game.pde
+
+## 2025-05-29 - Forgot to update devLog
+Forgot to update the devLog for this day, although I know I did stuff. I think it was mostly working on more of the Ghost conversion since a lot of things were broken from how I wrote it.
+
+## 2025-05-30 - Getting the Ghosts moving
+Today was mainly just working on getting the Ghosts rendering and moving. Ultimately kind of did this, although they jump between tiles rather than smoothly slide between them. I tried very hard to try and get them to move smoothly; they ended up just rocketing off the side of the screen. I will continue on this endeavor although it is a failing one. I also made the Ghosts different colors, which will be used later after the MVP for the final build.
+
+## 2025-05-31 - Attempted to kill PacMan. PacMan won
+Today was mainly just polish to get stuff ready for the MVP. The main thing I did today was add death. Now, when PacMan gets a power up, he can kill ghosts for ~5-ish seconds. When he kills them by being on the same tile as them, they just respawn in the ghost box. The whole eyes pathfinding back thing can be done later. I also made it so killing a ghost increases score by 200. Then, I tried to get PacMan to also be able to die. Let's just say it didn't go well. The death can trigger, sure, but it doesn't work, because for some reason that I can't find for the life of me, every map.getAt(x,y) won't give the node that you ask for, it'll always give a node with PacMan's coords. IDK if that's because PacMan is infecting all the nodes like a parasite or what but it's very bad. He's effectively cheating death. Back after testing. Turns out pac man changes the value of every single node. He goes up, so does the y value of the nodes. Why this happens I'll never understand. Not only that, but for some reason he can die once except only under specific coordinates set as spawn, and even then he doesn't spawn at those coordinates. I'm just gonna make the death flag end the game and put up a big white screen.
+
+## 2025-06-02 - Wraparound and bug fixes
+Today was mostly spent adding wraparound, fixing previous bugs, polishing the score system, and trying to figure out why Pacman must cheat death.
