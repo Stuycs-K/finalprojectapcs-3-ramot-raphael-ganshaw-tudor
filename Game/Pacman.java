@@ -88,6 +88,9 @@ public class Pacman {
     public int[] getLocation() {
       return location;
     }
+    public void setLoc(int[] loc) {
+      location = loc;
+    }
     
     public void move() {
       if (direction.equals("up")) {

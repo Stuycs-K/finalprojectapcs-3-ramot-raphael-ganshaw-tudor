@@ -31,7 +31,7 @@ public Ghost(Map map1){
   type = 1;
   isAfraid = false;
   direction = directionList[(int) (Math.random() * 4)];
-  move2();
+  move();
 }
 
 public void movePixel(int num)
@@ -50,10 +50,10 @@ public void movePixel(int num)
       } 
       
       if(loc[0] == location.getLocation()[0] && loc[1] == location.getLocation()[1])
-       move2();
+       move();
 }
 
-public void move2() {
+public void move() {
   ArrayList<Integer> directions = new ArrayList<Integer>();
   if (getDirection(direction)!=null)
     directions.add(direction);
@@ -66,73 +66,9 @@ public void move2() {
   int newDirection = (int)(Math.random()*directions.size());
   direction = directions.get(newDirection);
   location = getDirection(direction);
-  System.out.println(direction);
 }
 
 
-public void move()
-{
-  MapNode backupLocation = location;
-
-  if(direction == UP)
-  {
-    location = location.getUp();
-
-    if(location == null)
-    {
-      location = backupLocation;
-    }
-    
-  }
-  if(direction == DOWN)
-  {
-    location = location.getDown();
-    
-    if(location == null)
-    {
-      location = backupLocation;
-    }
-    
-  }
-  if(direction == LEFT)
-  {
-    location = location.getLeft();
-    
-    if(location == null)
-    {
-      location = backupLocation;
-    }
-    
-  }
-  if(direction == RIGHT)
-  {
-    location = location.getRight();
-    
-    if(location == null)
-    {
-      location = backupLocation;
-    }
-   
-  }
-  
-  
-  if((int) (Math.random()*10) == 1 || getDirection(direction) == null)
-    {
-       ArrayList<Integer> dir = new ArrayList<Integer>();
-       for(int i = 0; i < 4; i++){dir.add(directionList[i]);}
-       Collections.shuffle(dir);
-       direction = dir.get(0);
-       while(getDirection(direction) == null)
-       {
-        direction = dir.get(0); 
-        dir.remove(0);
-       }
-    }
-
-}
-
-
-  
 public void die(){
    while(location == null || location.getObject() != 5)
   {

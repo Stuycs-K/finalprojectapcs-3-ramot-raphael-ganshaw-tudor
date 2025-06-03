@@ -16,17 +16,6 @@ public Map(int[][] map)
    toNodeMap();
 }
 
-/*
-public Map(int mapNumber)
-{
-  mapArr = Game.getMap(mapNumber);
-  tiles = new MapNode[mapArr.length][mapArr[0].length];
-  toNodeMap(); //getMap will take a text file and turn it into an array. The text files will be named Map1, Map2, etc. This could be changed if we generate maps randomly
-//  createPellets(); // puts pellets on the map in empty spaces
-}
-*/
-
-
 
 
 public void toNodeMap()
@@ -54,22 +43,6 @@ public void toNodeMap()
 
 }
 
-
-
-/*public void createPellets()
-{
-  for(int i = 0; i < mapArr.length; i++)
-    {
-      for(int n = 0; n < mapArr[i].length; n++)
-        {
-          if(mapArr[i][n] == 0) //if coordinate is empty space
-            {
-              mapArr[i][n] = 1; //set to a pellet
-              numPellets++; //increase pellet count
-            }
-        }
-    }
-}*/
 
 public int getStartX()
 {

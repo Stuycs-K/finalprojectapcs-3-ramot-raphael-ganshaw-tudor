@@ -51,7 +51,7 @@ public class MapNode {
     }
 
     public int[] getLocation() {
-        return location;
+        return new int[]{location[0],location[1]};
     }
 
     public String toString(){

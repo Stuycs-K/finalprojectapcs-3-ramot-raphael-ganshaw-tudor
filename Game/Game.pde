@@ -10,9 +10,8 @@ Pacman pac;
 static int tileSize = 26;
 static int powerUpTimer = 0;
 int[] scaredColors = new int[] {0,0,255};
-static final int spawnX = 18;
-static final int spawnY = 14;
 boolean pacDead = false;
+int[] pacSpawn;
 
 
 
@@ -24,26 +23,25 @@ void setup()
   textSize(20);
   int[][] mapArr = getMap(1);
   map = new Map(mapArr);
-  int[] pacCoords = new int[]{0,0};
   for (int i = 0; i<map.mapDimensions()[1]; i++) {
     for (int n = 0; n<map.mapDimensions()[0]; n++) {
       if (mapArr[n][i]==0) {
-        pacCoords = new int[]{n,i};
+        pacSpawn = new int[]{n,i};
       }
     }
   }
   
 
-  pac = new Pacman(map.getAt(pacCoords),"left");
+  pac = new Pacman(map.getAt(pacSpawn),"left");
   
   for(int i = 0; i < 4; i++){ghostList.add(new Ghost(map));}
   colorfy(ghostList);
-           System.out.println(map.getAt(new int[]{spawnX,spawnY}));
 }
-//377, 481 -- spawn coords
+
 
 void draw()
 {
+  System.out.println(map.getAt(pacSpawn).getLocation()[0]+" "+map.getAt(pacSpawn).getLocation()[1]);
   if(!pacDead)
   {
   drawTiles();
@@ -75,11 +73,12 @@ void draw()
         {
             //pacDead = true;
            System.out.println("pac die :(");
-           System.out.println(map.getAt(new int[]{spawnX,spawnY}));
-           int scoreNow = pac.getScore();
-           pac = new Pacman(map.getAt(new int[]{spawnX,spawnY}),"left");
-           pac.changeScore(scoreNow);
+           pac.setNode(map.getAt(pacSpawn));
+           System.out.println(map.getAt(pacSpawn).getLocation()[0]+" "+map.getAt(pacSpawn).getLocation()[1]);
+           pac.setLoc(pac.getNode().getLocation());
+           System.out.println(pac.getNode().getLocation()[0]+" "+pac.getNode().getLocation()[1]);
            circle(pac.getLocation()[0],pac.getLocation()[1],tileSize/3*2);
+           System.out.println(pac.getLocation()[0]+" "+pac.getLocation()[1]);
         }
       
       if(ghost.isAfraid())
@@ -118,7 +117,7 @@ void draw()
   
   
   fill(0);
-  text("Score: "+pac.getScore() + " " + powerUpTimer,10,20);
+  text("Score: "+pac.getScore() + "   Power-up timer: " + powerUpTimer,10,20);
   }
   else
   {
