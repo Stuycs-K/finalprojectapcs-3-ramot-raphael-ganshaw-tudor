@@ -35,9 +35,13 @@ public class Pacman {
     }
     public void changeDirection() {
       if (node.getObject()==1)
+      {  
+        Game.numPellets--;
         changeScore(10);
+      }
       else if (node.getObject()==2)
       {
+        Game.numPellets--;
         changeScore(50);
         Game.powerUpTimer = 360;
         powerUp(true);
@@ -101,11 +105,11 @@ public class Pacman {
       }
       else if (direction.equals("left")) {
          location[0]-=2;
-         if(location[0] < 0){location[0] += 754;}
+         if(location[0] < 0){location[0] += Game.screenWidth;}
       }
       else if (direction.equals("right")) {
         location[0]+=2;
-        if(location[0] > 754){location[0] -= 754;}
+        if(location[0] > Game.screenWidth){location[0] -= Game.screenWidth;}
       }
     }
     
