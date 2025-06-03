@@ -25,4 +25,5 @@ I spent the beginning of class making Pac-man's movement work exactly as it does
 ### 2025-06-02 - Ghost Movement
 Spent time discussing updates from weekend and next steps to advance from the MVP. I then worked on making Ghost movement similar to Pac-man in that it is smooth, not jumping between nodes. I fixed up the nodes a bit and worked on wraparound.
 
-### 2025-06-03 - 
+### 2025-06-03 - End of Game
+Worked together to make the levels reset, added lives, and immunity after losing a life. We discussed strategies for the ghost AI.
