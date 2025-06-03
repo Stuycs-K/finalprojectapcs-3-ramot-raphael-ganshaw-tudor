@@ -21,3 +21,8 @@ We first moved all the files to Processing and did some work together with only 
 
 ### 2025-05-30 - Pac-man Movement and ghosts
 I spent the beginning of class making Pac-man's movement work exactly as it does in the game. The rest of class was spent working on ghost movement together.
+
+### 2025-06-02 - Ghost Movement
+Spent time discussing updates from weekend and next steps to advance from the MVP. I then worked on making Ghost movement similar to Pac-man in that it is smooth, not jumping between nodes. I fixed up the nodes a bit and worked on wraparound.
+
+### 2025-06-03 - 
