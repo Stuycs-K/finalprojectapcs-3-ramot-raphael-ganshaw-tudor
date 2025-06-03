@@ -12,6 +12,10 @@ static int powerUpTimer = 0;
 int[] scaredColors = new int[] {0,0,255};
 boolean pacDead = false;
 int[] pacSpawn;
+int immunityTimer;
+static int numPellets;
+int lives = 3;
+static int screenWidth;
 
 
 
@@ -19,6 +23,7 @@ int[] pacSpawn;
 void setup()
 {
   size(754,525);
+  screenWidth = width;
   strokeWeight(0);
   textSize(20);
   int[][] mapArr = getMap(1);
@@ -36,11 +41,41 @@ void setup()
   
   for(int i = 0; i < 4; i++){ghostList.add(new Ghost(map));}
   colorfy(ghostList);
+  //numPellets = 5;
 }
 
 
 void draw()
 {
+  
+  if(numPellets == 0)
+    {
+
+      textSize(20);
+      int[][] mapArr = getMap(1);
+      map = new Map(mapArr);
+      for (int i = 0; i<map.mapDimensions()[1]; i++) {
+        for (int n = 0; n<map.mapDimensions()[0]; n++) {
+          if (mapArr[n][i]==0) {
+            pacSpawn = new int[]{n,i};
+          }
+        }
+      }
+  
+
+      pac = new Pacman(map.getAt(pacSpawn),"left");
+      int ghostCount = ghostList.size();
+      for(int n = 0; n < ghostCount; n++)
+        {
+          ghostList.remove(0);
+        }
+      for(int i = 0; i < ghostCount; i++){ghostList.add(new Ghost(map));}
+      colorfy(ghostList);
+    }
+    
+    
+    
+    
   if(!pacDead)
   {
   drawTiles();
@@ -68,11 +103,17 @@ void draw()
     ghost.movePixel(2);
     if(Math.abs(ghost.getLoc()[0]-pac.getLocation()[0])<=2 && Math.abs(ghost.getLoc()[1]-pac.getLocation()[1])<=2)
     {
-      if(!ghost.isAfraid())
-        {
-           pac.setNode(map.getAt(pacSpawn));
-           pac.setLoc(pac.getNode().getLocation());
-           circle(pac.getLocation()[0],pac.getLocation()[1],tileSize/3*2);
+      if(!ghost.isAfraid() && immunityTimer == 0)
+        {  
+           lives--;
+           if(lives > 0)
+            {
+             immunityTimer = 300;
+             pac.setNode(map.getAt(pacSpawn));
+             pac.setLoc(pac.getNode().getLocation());
+             circle(pac.getLocation()[0],pac.getLocation()[1],tileSize/3*2);
+            }
+            else{pacDead = true;}
         }
       
       if(ghost.isAfraid())
@@ -99,7 +140,7 @@ void draw()
   
   
   if(powerUpTimer > 0){fill(255,255,255);powerUpTimer--;}
-  
+  if(immunityTimer > 0){immunityTimer--;}
   
   if(powerUpTimer == 0){
    pac.powerUp(false);
@@ -111,7 +152,12 @@ void draw()
   
   
   fill(0);
-  text("Score: "+pac.getScore() + "   Power-up timer: " + powerUpTimer,10,20);
+  text("Score: "+pac.getScore() + "   Power-Up Timer: " + powerUpTimer + " NumPellets: " + numPellets,10,20);
+  }
+  else{
+    
+    //RUNS WHEN GAME OVER
+    
   }
 }
 
@@ -147,6 +193,7 @@ public int[][] getMap(int mapNum)
    for(int n = 0; n < arr[i].length; n++)
    {
      arr[i][n] = Character.getNumericValue(lines2[i][n]);
+     if(arr[i][n] == 1 || arr[i][n] == 2){numPellets++;}
    }
   }
 
@@ -179,8 +226,9 @@ public static void colorfy(ArrayList<Ghost> arr)
  Collections.shuffle(colorList);
  for(Ghost n : arr)
  {
+
   if(colorList.size() == 0){n.setType(1); n.setColors(new int[]{255,0,0});}
-  n.setType(colorList.get(0));
+  n.setType(colorList.get(0)); //<>//
   int[] colors1 = new int[3];
   if(n.getType() == 1){colors1 = new int[]{255,0,0};}
   if(n.getType() == 2){colors1 = new int[]{255,184,255};}
