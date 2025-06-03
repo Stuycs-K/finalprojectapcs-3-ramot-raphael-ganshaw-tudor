@@ -41,7 +41,6 @@ void setup()
 
 void draw()
 {
-  System.out.println(map.getAt(pacSpawn).getLocation()[0]+" "+map.getAt(pacSpawn).getLocation()[1]);
   if(!pacDead)
   {
   drawTiles();

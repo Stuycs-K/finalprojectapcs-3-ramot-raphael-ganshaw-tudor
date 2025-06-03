@@ -44,9 +44,11 @@ public void movePixel(int num)
       }
       else if (direction == LEFT) {
          loc[0]-= num;
+         if(loc[0] < 0){loc[0] += 754;}
       }
       else if (direction == RIGHT) {
         loc[0] += num;
+        if(loc[0] > 754){loc[0] -= 754;}
       } 
       
       if(loc[0] == location.getLocation()[0] && loc[1] == location.getLocation()[1])
