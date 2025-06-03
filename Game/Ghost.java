@@ -11,11 +11,11 @@ private int direction;
 private Map map;
 private int[] colors;
 
-public final int UP = '^';; // ALL OF THESE ARE SUBJECT TO CHANGE
-public final int DOWN = 'v';
-public final int LEFT = '<';
-public final int RIGHT = '>';
-public final int[] directionList = new int[] {UP,DOWN,LEFT,RIGHT};
+public static final int UP = 0;; // ALL OF THESE ARE SUBJECT TO CHANGE
+public static final int DOWN = 2;
+public static final int LEFT = 3;
+public static final int RIGHT = 1;
+public static final int[] directionList = new int[] {UP,RIGHT,DOWN,LEFT};
 
 
 
@@ -26,39 +26,49 @@ public Ghost(Map map1){
   while(location == null || location.getObject() != 5)
   {
     location = map1.getAt((int) (Math.random() * mapDimensions[0]),(int) (Math.random() * mapDimensions[1]));
-    loc = location.getLocation();
+    loc = new int[]{location.getLocation()[0],location.getLocation()[1]};
   }
   type = 1;
   isAfraid = false;
   direction = directionList[(int) (Math.random() * 4)];
-
+  move2();
 }
 
 public void movePixel(int num)
 {
      if (direction == UP) {
-        loc[0]-= num;
-
+        loc[1]-= num;
       }
       else if (direction == DOWN) {
-        loc[0]+= num;
+        loc[1]+= num;
       }
       else if (direction == LEFT) {
-         loc[1]-= num;
+         loc[0]-= num;
       }
       else if (direction == RIGHT) {
-        loc[1] += num;
+        loc[0] += num;
       } 
       
-    if(loc[0] == location.getLocation()[0] && loc[1] == location.getLocation()[1])
-    {
-      if((int) (Math.random()*10) == 1)
-        {
-         direction = directionList[(int) (Math.random() * 4)];
-        }
-      move();
-    }
+      if(loc[0] == location.getLocation()[0] && loc[1] == location.getLocation()[1])
+       move2();
 }
+
+public void move2() {
+  ArrayList<Integer> directions = new ArrayList<Integer>();
+  if (getDirection(direction)!=null)
+    directions.add(direction);
+  if (getDirection(directionList[(direction+1)%4])!=null)
+    directions.add(directionList[(direction+1)%4]);
+  if (getDirection(directionList[(direction+3)%4])!=null)
+    directions.add(directionList[(direction+3)%4]);
+  if (directions.isEmpty())
+    System.out.println("empty");
+  int newDirection = (int)(Math.random()*directions.size());
+  direction = directions.get(newDirection);
+  location = getDirection(direction);
+  System.out.println(direction);
+}
+
 
 public void move()
 {

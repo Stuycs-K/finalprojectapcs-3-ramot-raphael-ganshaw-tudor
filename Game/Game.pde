@@ -51,7 +51,7 @@ void draw()
   if (pac.getLocation()[0]==pac.getNode().getLocation()[0] && pac.getLocation()[1]==pac.getNode().getLocation()[1]) {
     pac.changeDirection();
   }
-  
+  pac.move();
 
   for(Ghost ghost : ghostList)
   {
@@ -65,13 +65,10 @@ void draw()
     }
     
     
-    int[] loc = ghost.getLocation().getLocation();
+    int[] loc = ghost.getLoc();
     circle(loc[0],loc[1],tileSize/3*2);
-    if(frameCount % 9 == 0)
-    {
-      ghost.move();
-    }
-    if(loc.equals(pac.getNode().getLocation()))
+    ghost.movePixel(2);
+    if(Math.abs(ghost.getLoc()[0]-pac.getLocation()[0])<=2 && Math.abs(ghost.getLoc()[1]-pac.getLocation()[1])<=2)
     {
       if(!ghost.isAfraid())
         {
@@ -94,7 +91,7 @@ void draw()
   }
   
   
-  pac.move();
+  
   
   
   if(pac.isPoweredUp())
