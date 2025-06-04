@@ -18,6 +18,7 @@ int lives = 3;
 static int screenWidth;
 
 
+
 boolean invincible = false;
 
 
@@ -103,7 +104,7 @@ void draw()
     
     int[] loc = ghost.getLoc();
     circle(loc[0],loc[1],tileSize/3*2);
-    ghost.movePixel(2);
+    ghost.movePixel(2,pac.getNode());
     if(Math.abs(ghost.getLoc()[0]-pac.getLocation()[0])<=2 && Math.abs(ghost.getLoc()[1]-pac.getLocation()[1])<=2)
     {
       if(!ghost.isAfraid() && immunityTimer == 0 && !invincible)
@@ -154,8 +155,10 @@ void draw()
   }
   
   
-  fill(0);
+  fill(255);
+  stroke(15);
   text("Score: "+pac.getScore() + "   Power-Up Timer: " + powerUpTimer + " NumPellets: " + numPellets + " " + invincible,10,20);
+  noStroke();
   }
   else{
     
