@@ -37,4 +37,4 @@ Today was mainly just polish to get stuff ready for the MVP. The main thing I di
 Today was mostly spent adding wraparound, fixing previous bugs, polishing the score system, and trying to figure out why Pacman must cheat death.
 
 ## 2025-06-03 - Added lives, level reset, and bug fixes
-Main things done today were adding a life system, a way for levels to reset upon pull pellet collection, and an immunity system so Pac Man doesn't get sent into a death loop. We also discussed how to implement different ghost movements.
+Main things done today were adding a life system, a way for levels to reset upon pull pellet collection, and an immunity system so Pac Man doesn't get sent into a death loop. We also discussed how to implement different ghost movements. At home, I added some debug testing commands. I attempted to start on the ghost chasing algorithm, although I have to re start from scratch, since using previously made algorithms didn't work.
