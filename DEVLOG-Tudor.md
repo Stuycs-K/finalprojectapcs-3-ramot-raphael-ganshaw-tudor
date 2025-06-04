@@ -38,3 +38,6 @@ Today was mostly spent adding wraparound, fixing previous bugs, polishing the sc
 
 ## 2025-06-03 - Added lives, level reset, and bug fixes
 Main things done today were adding a life system, a way for levels to reset upon pull pellet collection, and an immunity system so Pac Man doesn't get sent into a death loop. We also discussed how to implement different ghost movements. At home, I added some debug testing commands. I attempted to start on the ghost chasing algorithm, although I have to re start from scratch, since using previously made algorithms didn't work.
+
+## 2025-06-04 - Tried to add pathfinding
+Today we tried to add ghost pathfinding to Pac Man, although the one algorithm I came up with ended up not being able to run as it was incredibly slow.

@@ -31,10 +31,10 @@ public Ghost(Map map1){
   type = 1;
   isAfraid = false;
   direction = directionList[(int) (Math.random() * 4)];
-  move();
+  move(map.getAt(14,18));
 }
 
-public void movePixel(int num)
+public void movePixel(int num, MapNode pacLocation)
 {
      if (direction == UP) {
         loc[1]-= num;
@@ -51,11 +51,12 @@ public void movePixel(int num)
         if(loc[0] > Game.screenWidth){loc[0] -= Game.screenWidth;}
       } 
       
+    System.out.println(location);
       if(loc[0] == location.getLocation()[0] && loc[1] == location.getLocation()[1])
-       move();
+       move(pacLocation);
 }
 
-public void move() {
+public void move(MapNode pacLocation) {
   ArrayList<Integer> directions = new ArrayList<Integer>();
   if (getDirection(direction)!=null)
     directions.add(direction);
@@ -65,8 +66,10 @@ public void move() {
     directions.add(directionList[(direction+3)%4]);
   if (directions.isEmpty())
     System.out.println("empty");
+
   int newDirection = (int)(Math.random()*directions.size());
   direction = directions.get(newDirection);
+  
   location = getDirection(direction);
 }
 
@@ -81,8 +84,12 @@ public void die(){
   type = 1;
   isAfraid = false;
   direction = directionList[(int) (Math.random() * 4)];
-  move();
+  move(map.getAt(14,18));
 }
+
+
+
+
 
 
 
@@ -129,6 +136,11 @@ public void swapAfraid(boolean t)
 public int getIntDirection()
 {
   return direction;
+}
+
+public void setIntDirection(int n)
+{
+ direction = n; 
 }
 
 public char getCharDirection()
