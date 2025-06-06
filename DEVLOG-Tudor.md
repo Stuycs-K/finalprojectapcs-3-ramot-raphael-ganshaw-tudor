@@ -41,3 +41,6 @@ Main things done today were adding a life system, a way for levels to reset upon
 
 ## 2025-06-04 - Tried to add pathfinding
 Today we tried to add ghost pathfinding to Pac Man, although the one algorithm I came up with ended up not being able to run as it was incredibly slow.
+
+## 2025-06-05 - Added start and death screen
+Self explanatory. I added a main menu screen from which players can start the game, and a screen where you can see your score and restart the game upon death.

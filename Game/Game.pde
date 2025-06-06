@@ -16,6 +16,8 @@ int immunityTimer;
 static int numPellets;
 int lives = 3;
 static int screenWidth;
+boolean gameStart = false;
+boolean debug = false;
 
 
 
@@ -51,6 +53,8 @@ void setup()
 
 void draw()
 {
+  if(lives <= 0){pacDead = true;}
+  if(lives > 0){pacDead = false;}
   if(numPellets == 0)
     {
       int scoreNow = pac.getScore();
@@ -80,7 +84,7 @@ void draw()
     
     
     
-  if(!pacDead)
+  if(!pacDead && gameStart)
   {
   drawTiles();
   fill(255,255,0);
@@ -157,16 +161,104 @@ void draw()
   
   fill(255);
   stroke(15);
-  text("Score: "+pac.getScore() + "   Power-Up Timer: " + powerUpTimer + " NumPellets: " + numPellets + " " + invincible,10,20);
+  String textString = "Score: "+pac.getScore() + " Power-Up Timer: " + powerUpTimer + " NumPellets: " + numPellets;
+  if(debug)
+  {
+   textString += " " + invincible; 
+  }
+  text(textString,10,20);
   noStroke();
   }
-  else{
+  else if(pacDead){
     
-    //RUNS WHEN GAME OVER
+        noStroke();
+    background(0,0,255);
+    fill(255,255,0);
+    rect(20,20,width-40,height-40);
+    fill(0);
+    rect(70,45,width-140,height-90);
+    fill(255,255,0);
+    stroke(255,0,0);
+    strokeWeight(200);
+    textSize(150);
+    text("You Died", 110,187);
+    textSize(50);
+    text("Score: " + pac.getScore(), 290,250);
+    textSize(20);
+    noStroke();
+    rect(300,260,684-530,50);
+    fill(0);
+    stroke(0);
+    strokeWeight(50);
+    text("RESET",350,295);
+    text(mouseX + " " + mouseY,mouseX,mouseY);
+    
+  }else{
+    noStroke();
+    background(0,0,255);
+    fill(255,255,0);
+    rect(20,20,width-40,height-40);
+    fill(0);
+    rect(70,45,width-140,height-90);
+    fill(255,255,0);
+    stroke(255,0,0);
+    strokeWeight(200);
+    textSize(150);
+    text("Pac-Man", 110,187);
+    textSize(20);
+    noStroke();
+    rect(300,260,684-530,50);
+    fill(0);
+    stroke(0);
+    strokeWeight(50);
+    text("PLAY GAME",330,295);
+    text(mouseX + " " + mouseY,mouseX,mouseY);
+
+
     
   }
 }
 
+void mouseClicked()
+{
+ if(!gameStart)
+ {
+  if(mouseX > 300 && mouseX < 454 && mouseY > 260 && mouseY < 310)
+  {
+   gameStart = true; 
+  }
+ }
+ if(pacDead)
+ {
+  if(mouseX > 300 && mouseX < 454 && mouseY > 260 && mouseY < 310)
+  {  
+      numPellets = 0;
+      textSize(20);
+      int[][] mapArr = getMap(1);
+      map = new Map(mapArr);
+      for (int i = 0; i<map.mapDimensions()[1]; i++) {
+        for (int n = 0; n<map.mapDimensions()[0]; n++) {
+          if (mapArr[n][i]==0) {
+            pacSpawn = new int[]{n,i};
+          }
+        }
+      }
+  
+
+      pac = new Pacman(map.getAt(pacSpawn),"left");
+      int ghostCount = ghostList.size();
+      for(int n = 0; n < ghostCount; n++)
+        {
+          ghostList.remove(0);
+        }
+      for(int i = 0; i < ghostCount; i++){ghostList.add(new Ghost(map));}
+      colorfy(ghostList);
+      lives = 3;
+      pacDead = false;
+      
+  }
+ }
+}
 
 void keyPressed() {
   if (key == CODED) {
@@ -190,6 +282,18 @@ void keyPressed() {
   if ( key == 'p' || key == 'P')
   {
    numPellets = 10; 
+  }
+  if ( key == 'd' || key == 'D')
+  {
+   debug = !debug; 
+  }
+  if (key == 'x' || key == 'X')
+  {
+   lives = 0; 
+  }
+  if (key == 'r' || key == 'R')
+  {
+   gameStart = false; 
   }
 }
 
