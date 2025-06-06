@@ -27,3 +27,6 @@ Spent time discussing updates from weekend and next steps to advance from the MV
 
 ### 2025-06-03 - End of Game
 Worked together to make the levels reset, added lives, and immunity after losing a life. We discussed strategies for the ghost AI.
+
+### 2025-06-04 - Ghost AI
+Worked together to write an AI program that would find the shortest path to pacman.
