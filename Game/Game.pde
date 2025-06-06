@@ -18,10 +18,12 @@ int lives = 3;
 static int screenWidth;
 boolean gameStart = false;
 boolean debug = false;
-
-
-
 boolean invincible = false;
+
+PImage pinky;
+PImage inky;
+PImage blinky;
+PImage clyde;
 
 
 
@@ -45,11 +47,12 @@ void setup()
 
   pac = new Pacman(map.getAt(pacSpawn),"left");
   
-  for(int i = 0; i < 4; i++){ghostList.add(new Ghost(map));}
-  colorfy(ghostList);
-  //numPellets = 5;
+  for(int i = 0; i < 4; i++){ghostList.add(new Ghost(map,i+1));}
+  clyde = loadImage("clyde.png");
+  inky = loadImage("inky.png");
+  pinky = loadImage("pinky.png");
+  blinky = loadImage("blinky.png");
 }
-
 
 void draw()
 {
@@ -76,8 +79,7 @@ void draw()
         {
           ghostList.remove(0);
         }
-      for(int i = 0; i < ghostCount; i++){ghostList.add(new Ghost(map));}
-      colorfy(ghostList);
+      for(int i = 0; i < ghostCount; i++){ghostList.add(new Ghost(map,i+1));}
       pac.changeScore(scoreNow);
     }
     
@@ -93,21 +95,11 @@ void draw()
     pac.changeDirection();
   }
   pac.move();
-
+  
+  drawGhosts();
   for(Ghost ghost : ghostList)
   {
-    if(powerUpTimer == 0)
-    {
-      fill(ghost.colors()[0], ghost.colors()[1], ghost.colors()[2]);
-    }
-    else
-    {
-      fill(scaredColors[0],scaredColors[1],scaredColors[2]);
-    }
-    
-    
     int[] loc = ghost.getLoc();
-    circle(loc[0],loc[1],tileSize/3*2);
     ghost.movePixel(2,pac.getNode());
     if(Math.abs(ghost.getLoc()[0]-pac.getLocation()[0])<=2 && Math.abs(ghost.getLoc()[1]-pac.getLocation()[1])<=2)
     {
@@ -174,8 +166,7 @@ void draw()
   }
   }
   else if(pacDead){
-    
-        noStroke();
+    noStroke();
     background(0,0,255);
     fill(255,255,0);
     rect(20,20,width-40,height-40);
@@ -217,8 +208,6 @@ void draw()
     strokeWeight(50);
     text("PLAY GAME",330,295);
     text(mouseX + " " + mouseY,mouseX,mouseY);
-
-
     
   }
 }
@@ -239,7 +228,7 @@ void mouseClicked()
       numPellets = 0;
       textSize(20);
       int[][] mapArr = getMap(1);
-      map = new Map(mapArr); //<>// //<>//
+      map = new Map(mapArr); //<>//
       for (int i = 0; i<map.mapDimensions()[1]; i++) {
         for (int n = 0; n<map.mapDimensions()[0]; n++) {
           if (mapArr[n][i]==0) {
@@ -250,13 +239,12 @@ void mouseClicked()
   
 
       pac = new Pacman(map.getAt(pacSpawn),"left");
-      int ghostCount = ghostList.size();
+      int ghostCount = ghostList.size(); //<>//
       for(int n = 0; n < ghostCount; n++)
         {
           ghostList.remove(0);
         }
-      for(int i = 0; i < ghostCount; i++){ghostList.add(new Ghost(map));}
-      colorfy(ghostList);
+      for(int i = 0; i < ghostCount; i++){ghostList.add(new Ghost(map,i+1));}
       lives = 3;
       pacDead = false;
       
@@ -343,22 +331,14 @@ public void drawTiles() {
 
 
 
-public static void colorfy(ArrayList<Ghost> arr)
+public void drawGhosts()
 {
- ArrayList<Integer> colorList = new ArrayList<Integer>();
- for(int i = 1; i < 5; i++){colorList.add(i);}
- Collections.shuffle(colorList);
- for(Ghost n : arr)
+ for(Ghost n : ghostList)
  {
-
-  if(colorList.size() == 0){n.setType(1); n.setColors(new int[]{255,0,0});}
-  n.setType(colorList.get(0)); //<>//
-  int[] colors1 = new int[3];
-  if(n.getType() == 1){colors1 = new int[]{255,0,0};}
-  if(n.getType() == 2){colors1 = new int[]{255,184,255};}
-  if(n.getType() == 3){colors1 = new int[]{0,255,255};}
-  if(n.getType() == 4){colors1 = new int[]{255,184,82};}
-  n.setColors(colors1);
-  colorList.remove(0);
+   System.out.println(n.getType());
+  if(n.getType() == 1){image(inky,n.getLoc()[0]-tileSize/8*3,n.getLoc()[1]-tileSize/8*3,tileSize/4*3,tileSize/4*3);}
+  if(n.getType() == 2){image(pinky,n.getLoc()[0]-tileSize/8*3,n.getLoc()[1]-tileSize/8*3,tileSize/4*3,tileSize/4*3);}
+  if(n.getType() == 3){image(blinky,n.getLoc()[0]-tileSize/8*3,n.getLoc()[1]-tileSize/8*3,tileSize/4*3,tileSize/4*3);}
+  if(n.getType() == 4){image(clyde,n.getLoc()[0]-tileSize/8*3,n.getLoc()[1]-tileSize/8*3,tileSize/4*3,tileSize/4*3);}
  }
 }

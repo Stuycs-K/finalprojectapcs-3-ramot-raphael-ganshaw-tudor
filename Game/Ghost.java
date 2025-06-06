@@ -19,7 +19,7 @@ public static final int[] directionList = new int[] {UP,RIGHT,DOWN,LEFT};
 
 
 
-public Ghost(Map map1){
+public Ghost(Map map1, int type){
 
   map = map1;
   int[] mapDimensions = map1.mapDimensions();
@@ -28,7 +28,7 @@ public Ghost(Map map1){
     location = map1.getAt((int) (Math.random() * mapDimensions[0]),(int) (Math.random() * mapDimensions[1]));
     loc = new int[]{location.getLocation()[0],location.getLocation()[1]};
   }
-  type = 1;
+  this.type = type;
   isAfraid = false;
   direction = directionList[(int) (Math.random() * 4)];
   move(map.getAt(14,18));
@@ -168,16 +168,5 @@ public String debugToString(){
   result += "Location: (" + n + ")\nType: " + type + "\nisAfraid: " + isAfraid + "\nDirection: " + (char) direction;
   return result + "\n" + Arrays.toString(loc);
 }
-
-
-
-
-
-
-
-
-
-
-
 
 }
