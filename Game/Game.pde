@@ -16,7 +16,7 @@ int immunityTimer;
 static int numPellets;
 int lives = 3;
 static int screenWidth;
-boolean gameStart = false;
+int mode = 0;
 boolean debug = false;
 
 
@@ -84,7 +84,7 @@ void draw()
     
     
     
-  if(!pacDead && gameStart)
+  if(!pacDead && mode == 2)
   {
   drawTiles();
   fill(255,255,0);
@@ -161,10 +161,10 @@ void draw()
   
   fill(255);
   stroke(15);
-  String textString = "Score: "+pac.getScore() + " Power-Up Timer: " + powerUpTimer + " NumPellets: " + numPellets;
+  String textString = "Score: "+pac.getScore() + "    Power-Up Timer: " + powerUpTimer/60 + "s    NumPellets: " + numPellets;
   if(debug)
   {
-   textString += " " + invincible; 
+   textString += "    Invincible: " + invincible; 
   }
   text(textString,10,20);
   noStroke();
@@ -175,7 +175,7 @@ void draw()
   }
   else if(pacDead){
     
-        noStroke();
+    noStroke();
     background(0,0,255);
     fill(255,255,0);
     rect(20,20,width-40,height-40);
@@ -195,9 +195,8 @@ void draw()
     stroke(0);
     strokeWeight(50);
     text("RESET",350,295);
-    text(mouseX + " " + mouseY,mouseX,mouseY);
     
-  }else{
+  }else if (mode == 0){
     noStroke();
     background(0,0,255);
     fill(255,255,0);
@@ -216,20 +215,58 @@ void draw()
     stroke(0);
     strokeWeight(50);
     text("PLAY GAME",330,295);
-    text(mouseX + " " + mouseY,mouseX,mouseY);
+    noStroke();
+    fill(255,255,0);
+    rect(300,330,684-530,50);
+    fill(0);
+    text("INFO",355,365);
 
-
+  }
+  else if (mode == 1)
+  {
+    noStroke();
+    background(0,0,255);
+    fill(255,255,0);
+    rect(20,20,width-40,height-40);
+    fill(0);
+    rect(70,45,width-140,height-90);
+    fill(255,255,0);
+    stroke(255,0,0);
+    strokeWeight(200);
+    textSize(50);
+    text("How To Play: ", 80, 100);
+    textSize(20);
+    text("You control the little yellow guy. Use the arrow keys to move him around.",75,150);
+    text("Your goal is the collect as many pellets as you can and avoid the ghosts.",75,180);
+    text("The big power pellets make the ghosts scared,",75,210);
+    text("and you can eat them for points while they're blue.",75, 235);
+    text("Once you collect all pellets on the map, it'll reset so you can play more.",75,265);
+    text("Press backspace to go back to the menu.",75,295);
+    text("Press d to show the developer commands.",75,345);
+    if(debug)
+    {
+      text("Press i to toggle invincibilty.",75,375);
+      text("Press x to kill Pac Man.",75,405);
+      text("Press r to reset to the menu.", 75, 435);
+      text("Press p to reduce pellet count to 10.",75,465);
+    }
+    
+    
     
   }
 }
 
 void mouseClicked()
 {
- if(!gameStart)
+ if(mode == 0)
  {
   if(mouseX > 300 && mouseX < 454 && mouseY > 260 && mouseY < 310)
   {
-   gameStart = true; 
+   mode = 2; 
+  }
+  if(mouseX > 300 && mouseX < 454 && mouseY > 330 && mouseY < 380)
+  {
+    mode = 1;
   }
  }
  if(pacDead)
@@ -279,6 +316,14 @@ void keyPressed() {
       pac.setDirection("right");
     }
   }
+  
+  if ( key == 'd' || key == 'D')
+  {
+   debug = !debug; 
+  }
+  
+  
+  if(debug){
   if (key == 'I' || key == 'i')
   {
    invincible = !invincible; 
@@ -287,18 +332,20 @@ void keyPressed() {
   {
    numPellets = 10; 
   }
-  if ( key == 'd' || key == 'D')
-  {
-   debug = !debug; 
-  }
   if (key == 'x' || key == 'X')
   {
    lives = 0; 
   }
   if (key == 'r' || key == 'R')
   {
-   gameStart = false; 
+   mode = 0;
   }
+  }
+  if(mode == 1 && (key == 8))
+  {
+    mode = 0;
+  }
+  
 }
 
 

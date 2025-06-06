@@ -44,3 +44,6 @@ Today we tried to add ghost pathfinding to Pac Man, although the one algorithm I
 
 ## 2025-06-05 - Added start and death screen
 Self explanatory. I added a main menu screen from which players can start the game, and a screen where you can see your score and restart the game upon death.
+
+## 2025-06-06 - Added info screen, cleaned up debug menus
+Today I added an info screen to the menu screen so that people could learn how to play and see the debug keys, and I cleaned up other parts, like how score is displayed in game.
