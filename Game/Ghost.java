@@ -92,7 +92,6 @@ public void die(){
 
 
 
-
 public MapNode getDirection(int heading)
 {
   if(heading == UP){return location.getUp();}
