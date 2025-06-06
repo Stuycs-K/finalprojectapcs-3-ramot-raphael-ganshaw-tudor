@@ -30,3 +30,6 @@ Worked together to make the levels reset, added lives, and immunity after losing
 
 ### 2025-06-04 - Ghost AI
 Worked together to write an AI program that would find the shortest path to pacman.
+
+## 2025-06-06 - Ghost area and Images
+I made the ghost area inaccesible to pac-man and changed its color. I added real types to each of the ghosts so they could have PImages instead of circles, and uploaded the images to the game.
