@@ -51,7 +51,7 @@ public void movePixel(int num, MapNode pacLocation)
         if(loc[0] > Game.screenWidth){loc[0] -= Game.screenWidth;}
       } 
       
-    System.out.println(location);
+
       if(loc[0] == location.getLocation()[0] && loc[1] == location.getLocation()[1])
        move(pacLocation);
 }
