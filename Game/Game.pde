@@ -239,7 +239,7 @@ void mouseClicked()
       numPellets = 0;
       textSize(20);
       int[][] mapArr = getMap(1);
-      map = new Map(mapArr); //<>//
+      map = new Map(mapArr); //<>// //<>//
       for (int i = 0; i<map.mapDimensions()[1]; i++) {
         for (int n = 0; n<map.mapDimensions()[0]; n++) {
           if (mapArr[n][i]==0) {
@@ -327,10 +327,12 @@ public void drawTiles() {
       int obj = map.getAt(n,i).getObject();
       if (obj==6)
         fill(0,0,255);
+      else if (obj==3)
+        fill(234,130,229);
       else
         fill(0);
       square(i*tileSize,n*tileSize,tileSize);
-      fill(234,130,229);
+      fill(255,192,203);
       if (obj==1) 
         circle(i*tileSize+(tileSize/2),n*tileSize+(tileSize/2),tileSize/6);
       if (obj==2)

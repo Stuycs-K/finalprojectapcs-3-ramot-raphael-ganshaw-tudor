@@ -52,7 +52,7 @@ public class Pacman {
       if (newDirection.equals("up") && node.getUp()!=null) {
         direction = newDirection;
       }
-      else if (newDirection.equals("down") && node.getDown()!=null) {
+      else if (newDirection.equals("down") && node.getDown()!=null && node.getDown().getObject()!=3) {
         direction = newDirection;
       }
       else if (newDirection.equals("left") && node.getLeft()!=null) {
@@ -65,7 +65,7 @@ public class Pacman {
       if (direction.equals("up") && node.getUp()!=null) {
         node = node.getUp();
       }
-      else if (direction.equals("down") && node.getDown()!=null) {
+      else if (direction.equals("down") && node.getDown()!=null && node.getDown().getObject()!=3) {
         node = node.getDown();
       }
       else if (direction.equals("left") && node.getLeft()!=null) {
