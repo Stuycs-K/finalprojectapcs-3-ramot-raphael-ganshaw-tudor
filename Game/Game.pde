@@ -28,7 +28,7 @@ boolean invincible = false;
 
 void setup()
 {
-  size(754,525);
+  size(754,520);
   screenWidth = width;
   strokeWeight(0);
   textSize(20);
@@ -168,6 +168,10 @@ void draw()
   }
   text(textString,10,20);
   noStroke();
+  fill(255,255,0);
+  for (int i = 0; i<lives; i++) {
+    circle(tileSize+tileSize*i,height-(tileSize/2),tileSize/3*2);
+  }
   }
   else if(pacDead){
     
@@ -235,7 +239,7 @@ void mouseClicked()
       numPellets = 0;
       textSize(20);
       int[][] mapArr = getMap(1);
-      map = new Map(mapArr);
+      map = new Map(mapArr); //<>//
       for (int i = 0; i<map.mapDimensions()[1]; i++) {
         for (int n = 0; n<map.mapDimensions()[0]; n++) {
           if (mapArr[n][i]==0) {
