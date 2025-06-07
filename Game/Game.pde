@@ -24,8 +24,8 @@ PImage pinky;
 PImage inky;
 PImage blinky;
 PImage clyde;
-
-
+PImage whiteGhost;
+PImage blueGhost;
 
 
 void setup()
@@ -52,6 +52,8 @@ void setup()
   inky = loadImage("inky.png");
   pinky = loadImage("pinky.png");
   blinky = loadImage("blinky.png");
+  whiteGhost = loadImage("WhiteGhost.png");
+  blueGhost = loadImage("BlueGhost.png");
 }
 
 void draw()
@@ -381,10 +383,17 @@ public void drawGhosts()
 {
  for(Ghost n : ghostList)
  {
-   System.out.println(n.getType());
-  if(n.getType() == 1){image(inky,n.getLoc()[0]-tileSize/8*3,n.getLoc()[1]-tileSize/8*3,tileSize/4*3,tileSize/4*3);}
-  if(n.getType() == 2){image(pinky,n.getLoc()[0]-tileSize/8*3,n.getLoc()[1]-tileSize/8*3,tileSize/4*3,tileSize/4*3);}
-  if(n.getType() == 3){image(blinky,n.getLoc()[0]-tileSize/8*3,n.getLoc()[1]-tileSize/8*3,tileSize/4*3,tileSize/4*3);}
-  if(n.getType() == 4){image(clyde,n.getLoc()[0]-tileSize/8*3,n.getLoc()[1]-tileSize/8*3,tileSize/4*3,tileSize/4*3);}
+  if (n.isAfraid()) {
+    if (powerUpTimer<120 && (powerUpTimer/20==5 || powerUpTimer/20==3 || powerUpTimer/20==1))
+      image(whiteGhost,n.getLoc()[0]-tileSize/2,n.getLoc()[1]-tileSize/2,tileSize,tileSize);
+    else
+      image(blueGhost,n.getLoc()[0]-tileSize/2,n.getLoc()[1]-tileSize/2,tileSize,tileSize);
+  }
+  else {
+    if(n.getType() == 1){image(inky,n.getLoc()[0]-tileSize/2,n.getLoc()[1]-tileSize/2,tileSize,tileSize);}
+    if(n.getType() == 2){image(pinky,n.getLoc()[0]-tileSize/2,n.getLoc()[1]-tileSize/2,tileSize,tileSize);}
+    if(n.getType() == 3){image(blinky,n.getLoc()[0]-tileSize/2,n.getLoc()[1]-tileSize/2,tileSize,tileSize);}
+    if(n.getType() == 4){image(clyde,n.getLoc()[0]-tileSize/2,n.getLoc()[1]-tileSize/2,tileSize,tileSize);}
+  }
  }
 }
