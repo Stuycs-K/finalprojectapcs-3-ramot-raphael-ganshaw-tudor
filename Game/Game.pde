@@ -102,7 +102,7 @@ void draw()
   for(Ghost ghost : ghostList)
   {
     int[] loc = ghost.getLoc();
-    ghost.movePixel(2,pac.getNode());
+    ghost.movePixel(2,pac.getLocation());
     if(Math.abs(ghost.getLoc()[0]-pac.getLocation()[0])<=2 && Math.abs(ghost.getLoc()[1]-pac.getLocation()[1])<=2)
     {
       if(!ghost.isAfraid() && immunityTimer == 0 && !invincible)
@@ -390,9 +390,9 @@ public void drawGhosts()
       image(blueGhost,n.getLoc()[0]-tileSize/2,n.getLoc()[1]-tileSize/2,tileSize,tileSize);
   }
   else {
-    if(n.getType() == 1){image(inky,n.getLoc()[0]-tileSize/2,n.getLoc()[1]-tileSize/2,tileSize,tileSize);}
+    if(n.getType() == 1){image(blinky,n.getLoc()[0]-tileSize/2,n.getLoc()[1]-tileSize/2,tileSize,tileSize);}
     if(n.getType() == 2){image(pinky,n.getLoc()[0]-tileSize/2,n.getLoc()[1]-tileSize/2,tileSize,tileSize);}
-    if(n.getType() == 3){image(blinky,n.getLoc()[0]-tileSize/2,n.getLoc()[1]-tileSize/2,tileSize,tileSize);}
+    if(n.getType() == 3){image(inky,n.getLoc()[0]-tileSize/2,n.getLoc()[1]-tileSize/2,tileSize,tileSize);}
     if(n.getType() == 4){image(clyde,n.getLoc()[0]-tileSize/2,n.getLoc()[1]-tileSize/2,tileSize,tileSize);}
   }
  }

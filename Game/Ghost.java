@@ -15,7 +15,7 @@ public static final int UP = 0;; // ALL OF THESE ARE SUBJECT TO CHANGE
 public static final int DOWN = 2;
 public static final int LEFT = 3;
 public static final int RIGHT = 1;
-public static final int[] directionList = new int[] {UP,RIGHT,DOWN,LEFT};
+public static final int[] directionList = new int[] {UP,LEFT,DOWN,RIGHT};
 
 
 
@@ -34,7 +34,7 @@ public Ghost(Map map1, int type){
   move(map.getAt(14,18));
 }
 
-public void movePixel(int num, MapNode pacLocation)
+public void movePixel(int num, int[] pacLocation)
 {
      if (direction == UP) {
         loc[1]-= num;
@@ -56,7 +56,29 @@ public void movePixel(int num, MapNode pacLocation)
        move(pacLocation);
 }
 
-public void move(MapNode pacLocation) {
+
+/*
+all ghosts take the shortest path to the target spot, calculated by distance formula. 
+if equal, the priorities are up, left, down, right
+in chase mode:
+blinky's target tile is pacman's location. 
+pinky's is the tile four in front of pacman, or four up and four left if he is faced upwards
+inky's is found by rotating the vector from the tile two in front of pacman (or two up and two left
+  if faced up) to blinky and rotating it 180 degrees
+clyde's target is pacman when 8 or more tiles away. when less, the target is same as in scatter mode
+
+in scatter mode:
+blinky's target is top right
+pinky's is top left
+inky's is bottom right
+clyde's is bottom left
+
+switch between chase for 20 seconds, scatter for 7
+all move randomly when afraid and slower
+all do 180 when switching between modes
+*/
+public void move(int[] pacLocation) {
+  //make arraylist of possible directions
   ArrayList<Integer> directions = new ArrayList<Integer>();
   if (getDirection(direction)!=null)
     directions.add(direction);
@@ -64,15 +86,25 @@ public void move(MapNode pacLocation) {
     directions.add(directionList[(direction+1)%4]);
   if (getDirection(directionList[(direction+3)%4])!=null)
     directions.add(directionList[(direction+3)%4]);
-  if (directions.isEmpty())
-    System.out.println("empty");
-
-  int newDirection = (int)(Math.random()*directions.size());
-  direction = directions.get(newDirection);
   
+  if (isAfraid()) {
+    int newDirection = (int)(Math.random()*directions.size());
+  }
+  int[] target;
+  //blinky
+  if (type==1) {
+    target = 
+  }
+  for (int i = 0; i<directions.size(); i++) {
+      
+  }
+  direction = directions.get(newDirection);
   location = getDirection(direction);
 }
 
+public double calcDist(int[] loc1, int[] loc2) {
+  return Math.sqrt((double)(Math.pow(loc1[0]-loc2[0],2)+Math.pow(loc1[1]-loc2[1],2));
+}
 
 public void die(){
    while(location == null || location.getObject() != 5)
