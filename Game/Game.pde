@@ -19,6 +19,7 @@ static int screenWidth;
 static int screenHeight;
 int mode = 0;
 static int ghostMode = 0;
+int ghostModeDuration = 0;
 boolean debug = false;
 static int framecount;
 
@@ -106,6 +107,19 @@ void draw()
   }
   pac.move();
   
+  ghostModeDuration++;
+  if (ghostMode==0) {
+    if(ghostModeDuration>=1200) { //chase for 20 seconds
+      ghostModeDuration = 0;
+      ghostMode = 1;
+    }
+  }
+  else {
+    if (ghostModeDuration>=420) { //scatter for 7 seconds
+      ghostModeDuration=0;
+      ghostMode=0;
+    }
+  }
   drawGhosts();
   for(Ghost ghost : ghostList)
   {
@@ -227,7 +241,7 @@ void draw()
   {
     noStroke();
     background(0,0,255);
-    fill(255,255,0);
+    fill(255,255,0); //<>//
     rect(20,20,width-40,height-40);
     fill(0);
     rect(70,45,width-140,height-90);
@@ -252,7 +266,7 @@ void draw()
       text("Press p to reduce pellet count to 10.",75,465); //<>//
     }
   }
-}
+} //<>//
 
 void mouseClicked()
 {
@@ -263,7 +277,7 @@ void mouseClicked()
    mode = 2; 
   }
   if(mouseX > 300 && mouseX < 454 && mouseY > 330 && mouseY < 380)
-  {
+  { //<>//
     mode = 1;
   }
  } //<>//
