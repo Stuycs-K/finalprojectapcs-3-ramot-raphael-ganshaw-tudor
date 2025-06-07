@@ -9,6 +9,7 @@ public class Pacman {
     private String newDirection;
     private boolean poweredUp;
     private int score;
+    private boolean atWall;
 
     public Pacman(MapNode loc, String dir) {
         node = loc;
@@ -16,6 +17,7 @@ public class Pacman {
         poweredUp = false;
         location = loc.getLocation();
         newDirection = dir;
+        atWall = false;
     }
     
 
@@ -48,7 +50,7 @@ public class Pacman {
       }
       node.setObject(0);
       // here we can keep score
-      
+      atWall = false;
       if (newDirection.equals("up") && node.getUp()!=null) {
         direction = newDirection;
       }
@@ -74,8 +76,9 @@ public class Pacman {
       else if (direction.equals("right") && node.getRight()!=null) {
         node = node.getRight();
       }
-      else
-        direction = "none"; //won't move if going into a wall
+      else {
+        atWall = true;
+      }
     }
 
   
@@ -97,19 +100,21 @@ public class Pacman {
     }
     
     public void move() {
-      if (direction.equals("up")) {
-        location[1]-=2;
-      }
-      else if (direction.equals("down")) {
-        location[1]+=2;
-      }
-      else if (direction.equals("left")) {
-         location[0]-=2;
-         if(location[0] < 0){location[0] += Game.screenWidth;}
-      }
-      else if (direction.equals("right")) {
-        location[0]+=2;
-        if(location[0] > Game.screenWidth){location[0] -= Game.screenWidth;}
+      if(!atWall) {
+        if (direction.equals("up")) {
+          location[1]-=3;
+        }
+        else if (direction.equals("down")) {
+          location[1]+=3;
+        }
+        else if (direction.equals("left")) {
+           location[0]-=3;
+           if(location[0] < 0){location[0] += Game.screenWidth;}
+        }
+        else if (direction.equals("right")) {
+          location[0]+=3;
+          if(location[0] > Game.screenWidth){location[0] -= Game.screenWidth;}
+        }
       }
     }
     

@@ -47,3 +47,6 @@ Self explanatory. I added a main menu screen from which players can start the ga
 
 ## 2025-06-06 - Added info screen, cleaned up debug menus
 Today I added an info screen to the menu screen so that people could learn how to play and see the debug keys, and I cleaned up other parts, like how score is displayed in game.
+
+## 2025-06-07 - Gave up on pathfinding
+Today I gave up on pathfinding, because it's impossible. For whatever reason the ghost won't do what it's meant to do despite the fact that it definitely should, and I have no clue what the issue it. Ghosts moving randomly works well enough. Besides giving up on that, I did the README and updating ghosts so they flash when the power up time is almost over.
