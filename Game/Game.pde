@@ -16,9 +16,10 @@ int immunityTimer;
 static int numPellets;
 int lives = 3;
 static int screenWidth;
+static int screenHeight;
 int mode = 0;
 boolean debug = false;
-
+static int framecount;
 
 
 boolean invincible = false;
@@ -29,6 +30,7 @@ boolean invincible = false;
 void setup()
 {
   size(754,520);
+  screenHeight = height;
   screenWidth = width;
   strokeWeight(0);
   textSize(20);
@@ -47,14 +49,16 @@ void setup()
   
   for(int i = 0; i < 4; i++){ghostList.add(new Ghost(map));}
   colorfy(ghostList);
+
   //numPellets = 5;
 }
 
 
 void draw()
 {
-  if(lives <= 0){pacDead = true;}
-  if(lives > 0){pacDead = false;}
+  framecount = frameCount;
+  if(lives <= 0 && mode == 2){pacDead = true;}
+  if(lives > 0 || mode != 2){pacDead = false;}
   if(numPellets == 0)
     {
       int scoreNow = pac.getScore();
@@ -102,7 +106,17 @@ void draw()
     }
     else
     {
+      if(powerUpTimer > 120){fill(scaredColors[0],scaredColors[1],scaredColors[2]);}
+      else{
+      if(frameCount % 20 > 10)
+      {
       fill(scaredColors[0],scaredColors[1],scaredColors[2]);
+      }
+      else
+      {
+       fill(242, 201, 162); 
+      }
+      }
     }
     
     
@@ -337,8 +351,33 @@ void keyPressed() {
    lives = 0; 
   }
   if (key == 'r' || key == 'R')
-  {
-   mode = 0;
+  {  
+      pacDead = true;
+      mode = 0;
+      numPellets = 0;
+      textSize(20);
+      int[][] mapArr = getMap(1);
+      map = new Map(mapArr);
+      for (int i = 0; i<map.mapDimensions()[1]; i++) {
+        for (int n = 0; n<map.mapDimensions()[0]; n++) {
+          if (mapArr[n][i]==0) {
+            pacSpawn = new int[]{n,i};
+          }
+        }
+      }
+  
+
+      pac = new Pacman(map.getAt(pacSpawn),"left");
+      int ghostCount = ghostList.size();
+      for(int n = 0; n < ghostCount; n++)
+        {
+          ghostList.remove(0);
+        }
+      for(int i = 0; i < ghostCount; i++){ghostList.add(new Ghost(map));}
+      colorfy(ghostList);
+      lives = 3;
+      pacDead = false;
+      
   }
   }
   if(mode == 1 && (key == 8))
@@ -363,6 +402,25 @@ public int[][] getMap(int mapNum)
    {
      arr[i][n] = Character.getNumericValue(lines2[i][n]);
      if(arr[i][n] == 1 || arr[i][n] == 2){numPellets++;}
+   }
+  }
+
+  return arr;
+}
+
+public int[][] getMap(int mapNum, int in)
+{
+  String[] lines = loadStrings("Map" + mapNum + ".txt");
+  char[][] lines2 = new char[lines.length][lines[0].length()];
+  for (int i = 0; i<lines.length; i++) {
+    lines2[i] = lines[i].toCharArray();
+  }
+  int[][] arr = new int[lines.length][lines[0].length()];
+  for(int i = 0; i < arr.length; i++)
+  {
+   for(int n = 0; n < arr[i].length; n++)
+   {
+     arr[i][n] = Character.getNumericValue(lines2[i][n]);
    }
   }
 
