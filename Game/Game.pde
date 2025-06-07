@@ -7,7 +7,7 @@ import java.io.*;
 Map map;
 ArrayList<Ghost> ghostList = new ArrayList<Ghost>();
 Pacman pac;
-static int tileSize = 26;
+static int tileSize = 30;
 static int powerUpTimer = 0;
 int[] scaredColors = new int[] {0,0,255};
 boolean pacDead = false;
@@ -16,8 +16,12 @@ int immunityTimer;
 static int numPellets;
 int lives = 3;
 static int screenWidth;
+static int screenHeight;
 int mode = 0;
+static int ghostMode = 0;
 boolean debug = false;
+static int framecount;
+
 boolean invincible = false;
 
 PImage pinky;
@@ -30,7 +34,8 @@ PImage blueGhost;
 
 void setup()
 {
-  size(754,520);
+  size(870,600);
+  screenHeight = height;
   screenWidth = width;
   strokeWeight(0);
   textSize(20);
@@ -48,6 +53,7 @@ void setup()
   pac = new Pacman(map.getAt(pacSpawn),"left");
   
   for(int i = 0; i < 4; i++){ghostList.add(new Ghost(map,i+1));}
+  for(Ghost g : ghostList){g.move(pac);}
   clyde = loadImage("clyde.png");
   inky = loadImage("inky.png");
   pinky = loadImage("pinky.png");
@@ -58,8 +64,9 @@ void setup()
 
 void draw()
 {
-  if(lives <= 0){pacDead = true;}
-  if(lives > 0){pacDead = false;}
+  framecount = frameCount;
+  if(lives <= 0 && mode == 2){pacDead = true;}
+  if(lives > 0 || mode != 2){pacDead = false;}
   if(numPellets == 0)
     {
       int scoreNow = pac.getScore();
@@ -82,6 +89,7 @@ void draw()
           ghostList.remove(0);
         }
       for(int i = 0; i < ghostCount; i++){ghostList.add(new Ghost(map,i+1));}
+      for(Ghost g : ghostList){g.move(pac);}
       pac.changeScore(scoreNow);
     }
     
@@ -102,7 +110,7 @@ void draw()
   for(Ghost ghost : ghostList)
   {
     int[] loc = ghost.getLoc();
-    ghost.movePixel(2,pac.getLocation());
+    ghost.movePixel(2,pac);
     if(Math.abs(ghost.getLoc()[0]-pac.getLocation()[0])<=2 && Math.abs(ghost.getLoc()[1]-pac.getLocation()[1])<=2)
     {
       if(!ghost.isAfraid() && immunityTimer == 0 && !invincible)
@@ -233,7 +241,7 @@ void draw()
     text("Your goal is the collect as many pellets as you can and avoid the ghosts.",75,180);
     text("The big power pellets make the ghosts scared,",75,210);
     text("and you can eat them for points while they're blue.",75, 235);
-    text("Once you collect all pellets on the map, it'll reset so you can play more.",75,265);
+    text("Once you collect all pellets on the map, it'll reset so you can play more.",75,265); //<>//
     text("Press backspace to go back to the menu.",75,295);
     text("Press d to show the developer commands.",75,345);
     if(debug)
@@ -258,7 +266,7 @@ void mouseClicked()
   {
     mode = 1;
   }
- }
+ } //<>//
  if(pacDead)
  {
   if(mouseX > 300 && mouseX < 454 && mouseY > 260 && mouseY < 310)
@@ -269,7 +277,7 @@ void mouseClicked()
       map = new Map(mapArr); //<>//
       for (int i = 0; i<map.mapDimensions()[1]; i++) {
         for (int n = 0; n<map.mapDimensions()[0]; n++) {
-          if (mapArr[n][i]==0) {
+          if (mapArr[n][i]==0) { //<>//
             pacSpawn = new int[]{n,i};
           }
         }
@@ -283,6 +291,7 @@ void mouseClicked()
           ghostList.remove(0);
         }
       for(int i = 0; i < ghostCount; i++){ghostList.add(new Ghost(map,i+1));}
+      for(Ghost g : ghostList){g.move(pac);}
       lives = 3;
       pacDead = false;
       
@@ -326,8 +335,33 @@ void keyPressed() {
    lives = 0; 
   }
   if (key == 'r' || key == 'R')
-  {
-   mode = 0;
+  {  
+      pacDead = true;
+      mode = 0;
+      numPellets = 0;
+      textSize(20);
+      int[][] mapArr = getMap(1);
+      map = new Map(mapArr);
+      for (int i = 0; i<map.mapDimensions()[1]; i++) {
+        for (int n = 0; n<map.mapDimensions()[0]; n++) {
+          if (mapArr[n][i]==0) {
+            pacSpawn = new int[]{n,i};
+          }
+        }
+      }
+  
+
+      pac = new Pacman(map.getAt(pacSpawn),"left");
+      int ghostCount = ghostList.size();
+      for(int n = 0; n < ghostCount; n++)
+        {
+          ghostList.remove(0);
+        }
+      for(int i = 0; i < ghostCount; i++){ghostList.add(new Ghost(map,i+1));}
+      for(Ghost g : ghostList){g.move(pac);}
+      lives = 3;
+      pacDead = false;
+      
   }
   }
   if(mode == 1 && (key == 8))
@@ -352,6 +386,25 @@ public int[][] getMap(int mapNum)
    {
      arr[i][n] = Character.getNumericValue(lines2[i][n]);
      if(arr[i][n] == 1 || arr[i][n] == 2){numPellets++;}
+   }
+  }
+
+  return arr;
+}
+
+public int[][] getMap(int mapNum, int in)
+{
+  String[] lines = loadStrings("Map" + mapNum + ".txt");
+  char[][] lines2 = new char[lines.length][lines[0].length()];
+  for (int i = 0; i<lines.length; i++) {
+    lines2[i] = lines[i].toCharArray();
+  }
+  int[][] arr = new int[lines.length][lines[0].length()];
+  for(int i = 0; i < arr.length; i++)
+  {
+   for(int n = 0; n < arr[i].length; n++)
+   {
+     arr[i][n] = Character.getNumericValue(lines2[i][n]);
    }
   }
 
