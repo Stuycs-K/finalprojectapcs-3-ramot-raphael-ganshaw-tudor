@@ -15,8 +15,8 @@ private static int[] blinkyLoc;
 
 public static final int UP = 0;; // ALL OF THESE ARE SUBJECT TO CHANGE
 public static final int DOWN = 2;
-public static final int LEFT = 3;
-public static final int RIGHT = 1;
+public static final int LEFT = 1;
+public static final int RIGHT = 3;
 public static final int[] directionList = new int[] {UP,LEFT,DOWN,RIGHT};
 
 
@@ -175,52 +175,10 @@ public void move(Pacman pac) {
   direction = newDirection;
   location = getDirection(direction);
 }
-/*
-public int pathfind(MapNode start, MapNode end, int[][] mapArr, int index)
-{
- int up = 1;
- int down = 1;
- int left = 1;
- int right = 1;
 
- if(index > 50 || start == null ||mapArr[(start.getLocation()[1]-Game.tileSize/2)/Game.tileSize][(start.getLocation()[0]-Game.tileSize/2)/Game.tileSize] == 6 || start.getObject() == 3){return 9207;} 
- if(start.getLocation()[0] < 0 || start.getLocation()[0] > Game.screenWidth || start.getLocation()[1] < 0 || start.getLocation()[1] > Game.screenHeight)
-  {
-   return 9207; 
-  }
- if(start.equals(end)){return 0;}
- System.out.println(Arrays.toString(start.getLocation()) + " " + Game.screenWidth);
- System.out.println((start.getLocation()[0]-Game.tileSize/2)/Game.tileSize + " " + (start.getLocation()[1]-Game.tileSize/2)/Game.tileSize);
- mapArr[(start.getLocation()[1]-Game.tileSize/2)/Game.tileSize][(start.getLocation()[0]-Game.tileSize/2)/Game.tileSize] = 6;
- up += pathfind(start.getUp(),end,mapArr,index+1);
- if(up != 1)
- {
- down += pathfind(start.getDown(),end,mapArr,index+1);
- if(down != 1)
- {
- left += pathfind(start.getLeft(),end,mapArr,index+1);
- }
- if(left != 1)
- {
- right += pathfind(start.getRight(),end,mapArr,index+1);
- }
- }
- 
- int[] dirArr = new int[]{up,down,left,right};
- Arrays.sort(dirArr);
- if(index == 0){
-  if(Game.framecount % 13 == 0)
-  {
-  if(dirArr[0] == up){direction = UP;}
-  if(dirArr[0] == down){direction = DOWN;}
-  if(dirArr[0] == left){direction = LEFT;}
-  if(dirArr[0] == right){direction = RIGHT;}
-  }
- }
- return dirArr[0];
-  
+public void turn180() {
+  direction = (direction+2)%4;
 }
-*/
 
 public double calcDist(int[] loc1, int[] loc2) {
   return Math.sqrt((double)(Math.pow(loc1[0]-loc2[0],2)+Math.pow(loc1[1]-loc2[1],2)));

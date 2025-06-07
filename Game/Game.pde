@@ -120,6 +120,8 @@ void draw()
       ghostMode=0;
     }
   }
+  if(ghostModeDuration==0 || powerUpTimer==360)
+    for (Ghost g : ghostList) {g.turn180();}
   drawGhosts();
   for(Ghost ghost : ghostList)
   {
@@ -239,9 +241,9 @@ void draw()
   }
   else if (mode == 1)
   {
-    noStroke();
+    noStroke(); //<>//
     background(0,0,255);
-    fill(255,255,0); //<>//
+    fill(255,255,0);
     rect(20,20,width-40,height-40);
     fill(0);
     rect(70,45,width-140,height-90);
@@ -264,9 +266,9 @@ void draw()
       text("Press x to kill Pac Man.",75,405);
       text("Press r to reset to the menu.", 75, 435);
       text("Press p to reduce pellet count to 10.",75,465); //<>//
-    }
+    } //<>//
   }
-} //<>//
+}
 
 void mouseClicked()
 {
@@ -275,9 +277,9 @@ void mouseClicked()
   if(mouseX > 300 && mouseX < 454 && mouseY > 260 && mouseY < 310)
   {
    mode = 2; 
-  }
+  } //<>//
   if(mouseX > 300 && mouseX < 454 && mouseY > 330 && mouseY < 380)
-  { //<>//
+  {
     mode = 1;
   }
  } //<>//
