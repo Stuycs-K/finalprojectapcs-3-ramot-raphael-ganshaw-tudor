@@ -126,7 +126,10 @@ void draw()
   for(Ghost ghost : ghostList)
   {
     int[] loc = ghost.getLoc();
-    ghost.movePixel(2,pac);
+    if (ghost.isAfraid())
+      ghost.movePixel(1,pac);
+    else
+      ghost.movePixel(2,pac);
     if(Math.abs(ghost.getLoc()[0]-pac.getLocation()[0])<=2 && Math.abs(ghost.getLoc()[1]-pac.getLocation()[1])<=2)
     {
       if(!ghost.isAfraid() && immunityTimer == 0 && !invincible)
@@ -156,7 +159,7 @@ void draw()
   
   
   
-  if(pac.isPoweredUp())
+  if(powerUpTimer==360)
   {
    for(Ghost n : ghostList)
    {
@@ -238,10 +241,10 @@ void draw()
     fill(0);
     text("INFO",355,365);
 
-  }
+  } //<>//
   else if (mode == 1)
   {
-    noStroke(); //<>//
+    noStroke();
     background(0,0,255);
     fill(255,255,0);
     rect(20,20,width-40,height-40);
@@ -263,10 +266,10 @@ void draw()
     if(debug)
     {
       text("Press i to toggle invincibilty.",75,375);
-      text("Press x to kill Pac Man.",75,405);
+      text("Press x to kill Pac Man.",75,405); //<>//
       text("Press r to reset to the menu.", 75, 435);
       text("Press p to reduce pellet count to 10.",75,465); //<>//
-    } //<>//
+    }
   }
 }
 
@@ -274,10 +277,10 @@ void mouseClicked()
 {
  if(mode == 0)
  {
-  if(mouseX > 300 && mouseX < 454 && mouseY > 260 && mouseY < 310)
+  if(mouseX > 300 && mouseX < 454 && mouseY > 260 && mouseY < 310) //<>//
   {
    mode = 2; 
-  } //<>//
+  }
   if(mouseX > 300 && mouseX < 454 && mouseY > 330 && mouseY < 380)
   {
     mode = 1;
