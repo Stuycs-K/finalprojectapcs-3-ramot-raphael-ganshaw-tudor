@@ -160,11 +160,16 @@ void draw()
  
   }
   if (lostLife) {
+
+    pacI = loadImage("pacd" + frameCount%10 + ".png");
+    image(pacI,pac.getLocation()[0]-tileSize/2,pac.getLocation()[1]-tileSize/2,tileSize,tileSize);
     delay(2000);
+    
+    //delay(2000);
     pac.setNode(map.getAt(pacSpawn));
     pac.setLoc(pac.getNode().getLocation());
     pac.setDirection("left");
-    circle(pac.getLocation()[0],pac.getLocation()[1],tileSize/3*2);
+    image(pacI,pac.getLocation()[0]-tileSize/2,pac.getLocation()[1]-tileSize/2,tileSize,tileSize);
     int ghostCount = ghostList.size();
     for(int n = 0; n < ghostCount; n++)
     {
@@ -212,7 +217,8 @@ void draw()
   noStroke();
   fill(255,255,0);
   for (int i = 0; i<lives; i++) {
-    circle(tileSize+tileSize*i,height-(tileSize/2),tileSize/3*2);
+    //circle(tileSize+tileSize*i,height-(tileSize/2),tileSize/3*2);
+    image(pacI,tileSize+tileSize*i,height-tileSize,tileSize,tileSize);
   }
   }
   else if(pacDead){
@@ -279,28 +285,28 @@ void draw()
     textSize(20);
     text("You control the little yellow guy. Use the arrow keys to move him around.",85,150);
     text("Your goal is the collect as many pellets as you can and avoid the ghosts.",85,180);
-    text("The big power pellets make the ghosts scared,",85,210);
+    text("The big power pellets make the ghosts scared,",85,210); //<>//
     text("and you can eat them for points while they're blue.",85, 235);
     text("Once you collect all pellets on the map, it'll reset so you can play more.",85,265);
     text("Press backspace to go back to the menu.",85,295);
-    text("Press d to show the developer commands.",85,345); //<>//
-    if(debug)
+    text("Press d to show the developer commands.",85,345); //<>// //<>//
+    if(debug) //<>//
  //<>// //<>//
     {
       text("Press i to toggle invincibilty.",85,375);
       text("Press x to kill Pac Man.",85,405);
-      text("Press r to reset to the menu.", 85, 435); //<>// //<>//
+      text("Press r to reset to the menu.", 85, 435); //<>// //<>// //<>//
       text("Press p to reduce pellet count to 10.",85,465); //<>// //<>//
-  }
-}
+  } //<>//
+} //<>//
 }
 void mouseClicked()
 { //<>// //<>//
  if(mode == 0) //<>//
- { //<>// //<>//
+ { //<>// //<>// //<>//
   if(mouseX > 300 && mouseX < 454 && mouseY > 260 && mouseY < 310) //<>// //<>//
   {
-   mode = 2;  //<>// //<>//
+   mode = 2;  //<>// //<>// //<>//
   } //<>//
   if(mouseX > 300 && mouseX < 454 && mouseY > 330 && mouseY < 380)
   { //<>// //<>//
@@ -308,7 +314,7 @@ void mouseClicked()
   }
  } //<>// //<>// //<>//
  if(pacDead)
- { //<>//
+ { //<>// //<>//
   if(mouseX > 300 && mouseX < 454 && mouseY > 260 && mouseY < 310) //<>//
   {  
       numPellets = 0;
@@ -449,15 +455,15 @@ public int[][] getMap(int mapNum, int in)
   }
 
   return arr;
-}
+} //<>//
 public void drawTiles() {
   for (int i = 0; i<map.mapDimensions()[1]; i++) {
     for (int n = 0; n<map.mapDimensions()[0]; n++) {
       int obj = map.getAt(n,i).getObject();
       if (obj==6)
         fill(0,0,255); //<>// //<>//
-      else if (obj==3)
-        fill(234,130,229);
+      else if (obj==3) //<>//
+        fill(234,130,229); //<>//
       else
         fill(0);
       square(i*tileSize,n*tileSize,tileSize);
