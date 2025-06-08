@@ -277,6 +277,11 @@ public MapNode getDirection(int heading)
   return null;
 }
 
+public int getDir()
+{
+ return direction; 
+}
+
 public MapNode getLocation()
 {
   return location;

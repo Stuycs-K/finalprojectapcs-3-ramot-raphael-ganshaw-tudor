@@ -30,7 +30,7 @@ PImage blinky;
 PImage clyde;
 PImage whiteGhost;
 PImage blueGhost;
-
+PImage pacI;
 
 void setup()
 {
@@ -99,7 +99,9 @@ void draw()
   {
   drawTiles();
   fill(255,255,0);
-  circle(pac.getLocation()[0],pac.getLocation()[1],tileSize/3*2);
+  pacI = loadImage("pac" + pac.getDir() + ".png");
+  image(pacI,pac.getLocation()[0]-tileSize/2,pac.getLocation()[1]-tileSize/2,tileSize,tileSize);
+  //circle(pac.getLocation()[0],pac.getLocation()[1],tileSize/3*2);
   if (pac.getLocation()[0]==pac.getNode().getLocation()[0] && pac.getLocation()[1]==pac.getNode().getLocation()[1]) {
     pac.changeDirection();
   }
@@ -125,6 +127,10 @@ void draw()
   for(Ghost ghost : ghostList)
   {
     int[] loc = ghost.getLoc();
+    if(ghost.getType() == 1){blinky = loadImage("blinky" + ghost.getDir() + ".png");}
+    if(ghost.getType() == 2){pinky = loadImage("pinky" + ghost.getDir() + ".png");}
+    if(ghost.getType() == 3){inky = loadImage("inky" + ghost.getDir() + ".png");}
+    if(ghost.getType() == 4){clyde = loadImage("clyde" + ghost.getDir() + ".png");}
     if (ghost.isAfraid())
       ghost.movePixel(1,pac);
     else
@@ -279,28 +285,28 @@ void draw()
     text("Press backspace to go back to the menu.",85,295);
     text("Press d to show the developer commands.",85,345); //<>//
     if(debug)
-
+ //<>//
     {
       text("Press i to toggle invincibilty.",85,375);
       text("Press x to kill Pac Man.",85,405);
-      text("Press r to reset to the menu.", 85, 435);
-      text("Press p to reduce pellet count to 10.",85,465);
+      text("Press r to reset to the menu.", 85, 435); //<>//
+      text("Press p to reduce pellet count to 10.",85,465); //<>//
   }
 }
 }
 void mouseClicked()
-{
+{ //<>//
  if(mode == 0) //<>//
- {
-  if(mouseX > 300 && mouseX < 454 && mouseY > 260 && mouseY < 310)
+ { //<>//
+  if(mouseX > 300 && mouseX < 454 && mouseY > 260 && mouseY < 310) //<>//
   {
    mode = 2;  //<>// //<>//
   } //<>//
   if(mouseX > 300 && mouseX < 454 && mouseY > 330 && mouseY < 380)
-  {
+  { //<>//
     mode = 1;
   }
- } //<>//
+ } //<>// //<>//
  if(pacDead)
  { //<>//
   if(mouseX > 300 && mouseX < 454 && mouseY > 260 && mouseY < 310) //<>//
@@ -308,7 +314,7 @@ void mouseClicked()
       numPellets = 0;
       textSize(20);
       int[][] mapArr = getMap(1);
-      map = new Map(mapArr); //<>//
+      map = new Map(mapArr); //<>// //<>//
       for (int i = 0; i<map.mapDimensions()[1]; i++) {
         for (int n = 0; n<map.mapDimensions()[0]; n++) {
           if (mapArr[n][i]==0) { //<>//
@@ -449,15 +455,15 @@ public void drawTiles() {
     for (int n = 0; n<map.mapDimensions()[0]; n++) {
       int obj = map.getAt(n,i).getObject();
       if (obj==6)
-        fill(0,0,255);
+        fill(0,0,255); //<>//
       else if (obj==3)
         fill(234,130,229);
       else
         fill(0);
       square(i*tileSize,n*tileSize,tileSize);
       fill(255,192,203);
-      if (obj==1) 
-        circle(i*tileSize+(tileSize/2),n*tileSize+(tileSize/2),tileSize/6);
+      if (obj==1)  //<>//
+        circle(i*tileSize+(tileSize/2),n*tileSize+(tileSize/2),tileSize/6); //<>//
       if (obj==2)
         circle(i*tileSize+(tileSize/2),n*tileSize+(tileSize/2),tileSize/2);
     } //<>//
