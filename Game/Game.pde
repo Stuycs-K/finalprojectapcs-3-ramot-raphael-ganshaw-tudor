@@ -125,7 +125,6 @@ void draw()
   {
     int[] loc = ghost.getLoc();
     if (ghost.isAfraid())
-
       ghost.movePixel(1,pac);
     else
     { 
@@ -162,7 +161,7 @@ void draw()
   
   
 
-  if(powerUpTimer > 0)
+  if(powerUpTimer==361)
   {
    for(Ghost n : ghostList)
    {
@@ -242,7 +241,7 @@ void draw()
     fill(255,255,0);
     rect(300,330,684-530,50);
     fill(0);
-    text("INFO",355,365);
+    text("INFO",355,365); //<>//
 
   }
   else if (mode == 1)
@@ -267,7 +266,7 @@ void draw()
     text("Press backspace to go back to the menu.",75,295);
     text("Press d to show the developer commands.",75,345);
     if(debug)
-    {
+    { //<>//
       text("Press i to toggle invincibilty.",75,375);
       text("Press x to kill Pac Man.",75,405);
       text("Press r to reset to the menu.", 75, 435);
@@ -278,7 +277,7 @@ void draw()
 
 void mouseClicked()
 {
- if(mode == 0)
+ if(mode == 0) //<>//
  {
   if(mouseX > 300 && mouseX < 454 && mouseY > 260 && mouseY < 310)
   {
