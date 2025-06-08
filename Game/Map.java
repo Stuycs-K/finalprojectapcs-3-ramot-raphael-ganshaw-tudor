@@ -4,8 +4,6 @@ import java.io.*;
 public class Map{
 
 private int[][] mapArr;
-private int numPellets;
-private int[] startCoords;
 private MapNode[][] tiles;
 
 
@@ -44,35 +42,7 @@ public void toNodeMap()
 }
 
 
-public int getStartX()
-{
-  return startCoords[0];
-}
 
-public int getStartY()
-{
-  return startCoords[1];
-}
-
-public int getPellets()
-{
-  return numPellets;
-}
-
-public void setPellets(int p)
-{
-  numPellets = p;
-}
-
-public void removePellet()
-{
-  numPellets--;
-}
-
-public void genItems()
-{
-  //generate 2-3 items in places with pellets
-}
 
 public int[] mapDimensions()
 {

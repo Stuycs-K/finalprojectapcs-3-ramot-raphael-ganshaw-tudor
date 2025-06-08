@@ -313,20 +313,6 @@ public void swapAfraid(boolean t)
   isAfraid = t;
 }
 
-public int getIntDirection()
-{
-  return direction;
-}
-
-public void setIntDirection(int n)
-{
- direction = n; 
-}
-
-public char getCharDirection()
-{
-  return (char) direction;
-}
 
 public int[] colors()
 {
