@@ -30,6 +30,7 @@ public Ghost(Map map1, int type){
   if (type==1) {
     location = map.getAt(9,12);
     loc = new int[]{location.getLocation()[0],location.getLocation()[1]};
+    blinkyLoc = loc;
     direction = UP;
     startTimer = 0;
   }
@@ -84,6 +85,11 @@ public void movePixel(int num, Pacman pac)
   else if (direction == RIGHT) {
     loc[0] += num;
     if(loc[0] > Game.screenWidth){loc[0] -= Game.screenWidth;}
+  }
+  
+  if (type==1) {
+    System.out.println(blinkyLoc[0]+", "+blinkyLoc[1]);
+    System.out.println(loc[0]+", "+loc[1]);
   }
 }
 
