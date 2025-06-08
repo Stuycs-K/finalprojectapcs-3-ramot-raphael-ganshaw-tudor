@@ -18,7 +18,7 @@ int lives = 3;
 static int screenWidth;
 static int screenHeight;
 int mode = 0;
-static int ghostMode = 0;
+static int ghostMode = 1;
 int ghostModeDuration = 0;
 boolean debug = false;
 static int framecount;
@@ -127,7 +127,10 @@ void draw()
     if (ghost.isAfraid())
       ghost.movePixel(1,pac);
     else
+    { 
+      if(ghost.getLoc()[0] % 2 == 0 || ghost.getLoc()[1] % 2 == 0){ghost.movePixel(1,pac);}
       ghost.movePixel(2,pac);
+    }
     if(Math.abs(ghost.getLoc()[0]-pac.getLocation()[0])<=2 && Math.abs(ghost.getLoc()[1]-pac.getLocation()[1])<=2)
     {
       if(!ghost.isAfraid() && immunityTimer == 0 && !invincible)
@@ -157,6 +160,7 @@ void draw()
   
   
   
+
   if(powerUpTimer==361)
   {
    for(Ghost n : ghostList)
@@ -237,7 +241,7 @@ void draw()
     fill(255,255,0);
     rect(300,330,684-530,50);
     fill(0);
-    text("INFO",355,365);
+    text("INFO",355,365); //<>//
 
   }
   else if (mode == 1)
@@ -262,7 +266,7 @@ void draw()
     text("Press backspace to go back to the menu.",75,295);
     text("Press d to show the developer commands.",75,345);
     if(debug)
-    {
+    { //<>//
       text("Press i to toggle invincibilty.",75,375);
       text("Press x to kill Pac Man.",75,405);
       text("Press r to reset to the menu.", 75, 435);
@@ -273,7 +277,7 @@ void draw()
 
 void mouseClicked()
 {
- if(mode == 0)
+ if(mode == 0) //<>//
  {
   if(mouseX > 300 && mouseX < 454 && mouseY > 260 && mouseY < 310)
   {
@@ -285,8 +289,8 @@ void mouseClicked()
   }
  } //<>//
  if(pacDead)
- {
-  if(mouseX > 300 && mouseX < 454 && mouseY > 260 && mouseY < 310)
+ { //<>//
+  if(mouseX > 300 && mouseX < 454 && mouseY > 260 && mouseY < 310) //<>//
   {  
       numPellets = 0;
       textSize(20);
@@ -450,8 +454,8 @@ public void drawTiles() {
 
 
 public void drawGhosts()
-{
- for(Ghost n : ghostList)
+{ //<>//
+ for(Ghost n : ghostList) //<>//
  {
   if (n.isAfraid()) {
     if (powerUpTimer<120 && (powerUpTimer/20==5 || powerUpTimer/20==3 || powerUpTimer/20==1))
