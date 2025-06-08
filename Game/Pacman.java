@@ -56,6 +56,7 @@ public class Pacman {
         changeScore(50);
         Game.powerUpTimer = 361;
         powerUp(true);
+        Game.ghostsEaten = 0;
       }
       node.setObject(0);
       // here we can keep score
