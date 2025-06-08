@@ -45,7 +45,7 @@ public class Pacman {
       {
         Game.numPellets--;
         changeScore(50);
-        Game.powerUpTimer = 360;
+        Game.powerUpTimer = 361;
         powerUp(true);
       }
       node.setObject(0);

@@ -86,11 +86,6 @@ public void movePixel(int num, Pacman pac)
     loc[0] += num;
     if(loc[0] > Game.screenWidth){loc[0] -= Game.screenWidth;}
   }
-  
-  if (type==1) {
-    System.out.println(blinkyLoc[0]+", "+blinkyLoc[1]);
-    System.out.println(loc[0]+", "+loc[1]);
-  }
 }
 
 
@@ -239,11 +234,26 @@ public double calcDist(int[] loc1, int[] loc2) {
 }
 
 public void die(){
-   while(location == null || location.getObject() != 5)
-  {
-    int[] mapDimensions = map.mapDimensions();
-    location = map.getAt((int) (Math.random() * mapDimensions[0]),(int) (Math.random() * mapDimensions[1]));
-    loc = location.getLocation();
+  if (type==1) {
+    location = map.getAt(9,12);
+    loc = new int[]{location.getLocation()[0],location.getLocation()[1]};
+    blinkyLoc = loc;
+    direction = UP;
+  }
+  else if (type==2) {
+    location = map.getAt(10,13);
+    loc = new int[]{location.getLocation()[0],location.getLocation()[1]};
+    direction = DOWN;
+  }
+  else if (type==3) {
+    location = map.getAt(9,15);
+    loc = new int[]{location.getLocation()[0],location.getLocation()[1]};
+    direction = UP;
+  }
+  else if (type==4) {
+    location = map.getAt(10,16);
+    loc = new int[]{location.getLocation()[0],location.getLocation()[1]};
+    direction = DOWN;
   }
   isAfraid = false;
   startTimer = 0;
