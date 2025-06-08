@@ -118,7 +118,7 @@ void draw()
       ghostMode=0;
     }
   }
-  if(ghostModeDuration==0 || powerUpTimer==360)
+  if(ghostModeDuration==0 || powerUpTimer==361)
     for (Ghost g : ghostList) {g.turn180();}
   drawGhosts();
   for(Ghost ghost : ghostList)
@@ -161,6 +161,7 @@ void draw()
   
   
   
+
   if(powerUpTimer > 0)
   {
    for(Ghost n : ghostList)
@@ -245,7 +246,7 @@ void draw()
 
   }
   else if (mode == 1)
-  { //<>//
+  { //<>// //<>//
     noStroke();
     background(0,0,255);
     fill(255,255,0);
@@ -270,7 +271,7 @@ void draw()
       text("Press i to toggle invincibilty.",75,375);
       text("Press x to kill Pac Man.",75,405);
       text("Press r to reset to the menu.", 75, 435);
-      text("Press p to reduce pellet count to 10.",75,465); //<>// //<>//
+      text("Press p to reduce pellet count to 10.",75,465); //<>// //<>// //<>//
     }
   }
 }
@@ -281,7 +282,7 @@ void mouseClicked()
  {
   if(mouseX > 300 && mouseX < 454 && mouseY > 260 && mouseY < 310)
   {
-   mode = 2;  //<>//
+   mode = 2;  //<>// //<>//
   }
   if(mouseX > 300 && mouseX < 454 && mouseY > 330 && mouseY < 380)
   {
@@ -289,7 +290,7 @@ void mouseClicked()
   }
  } //<>//
  if(pacDead)
- {
+ { //<>//
   if(mouseX > 300 && mouseX < 454 && mouseY > 260 && mouseY < 310) //<>//
   {  
       numPellets = 0;
@@ -454,7 +455,7 @@ public void drawTiles() {
 
 
 public void drawGhosts()
-{
+{ //<>//
  for(Ghost n : ghostList) //<>//
  {
   if (n.isAfraid()) {
