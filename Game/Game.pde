@@ -19,6 +19,7 @@ static int screenWidth;
 static int screenHeight;
 int mode = 0;
 static int ghostMode = 0;
+int ghostModeDuration = 0;
 boolean debug = false;
 static int framecount;
 
@@ -53,7 +54,6 @@ void setup()
   pac = new Pacman(map.getAt(pacSpawn),"left");
   
   for(int i = 0; i < 4; i++){ghostList.add(new Ghost(map,i+1));}
-  for(Ghost g : ghostList){g.move(pac);}
   clyde = loadImage("clyde.png");
   inky = loadImage("inky.png");
   pinky = loadImage("pinky.png");
@@ -89,7 +89,6 @@ void draw()
           ghostList.remove(0);
         }
       for(int i = 0; i < ghostCount; i++){ghostList.add(new Ghost(map,i+1));}
-      for(Ghost g : ghostList){g.move(pac);}
       pac.changeScore(scoreNow);
     }
     
@@ -106,11 +105,29 @@ void draw()
   }
   pac.move();
   
+  ghostModeDuration++;
+  if (ghostMode==0) {
+    if(ghostModeDuration>=1200) { //chase for 20 seconds
+      ghostModeDuration = 0;
+      ghostMode = 1;
+    }
+  }
+  else {
+    if (ghostModeDuration>=420) { //scatter for 7 seconds
+      ghostModeDuration=0;
+      ghostMode=0;
+    }
+  }
+  if(ghostModeDuration==0 || powerUpTimer==360)
+    for (Ghost g : ghostList) {g.turn180();}
   drawGhosts();
   for(Ghost ghost : ghostList)
   {
     int[] loc = ghost.getLoc();
-    ghost.movePixel(2,pac);
+    if (ghost.isAfraid())
+      ghost.movePixel(1,pac);
+    else
+      ghost.movePixel(2,pac);
     if(Math.abs(ghost.getLoc()[0]-pac.getLocation()[0])<=2 && Math.abs(ghost.getLoc()[1]-pac.getLocation()[1])<=2)
     {
       if(!ghost.isAfraid() && immunityTimer == 0 && !invincible)
@@ -140,7 +157,7 @@ void draw()
   
   
   
-  if(pac.isPoweredUp())
+  if(powerUpTimer==360)
   {
    for(Ghost n : ghostList)
    {
@@ -224,7 +241,7 @@ void draw()
 
   }
   else if (mode == 1)
-  {
+  { //<>//
     noStroke();
     background(0,0,255);
     fill(255,255,0);
@@ -249,7 +266,7 @@ void draw()
       text("Press i to toggle invincibilty.",75,375);
       text("Press x to kill Pac Man.",75,405);
       text("Press r to reset to the menu.", 75, 435);
-      text("Press p to reduce pellet count to 10.",75,465); //<>//
+      text("Press p to reduce pellet count to 10.",75,465); //<>// //<>//
     }
   }
 }
@@ -260,7 +277,7 @@ void mouseClicked()
  {
   if(mouseX > 300 && mouseX < 454 && mouseY > 260 && mouseY < 310)
   {
-   mode = 2; 
+   mode = 2;  //<>//
   }
   if(mouseX > 300 && mouseX < 454 && mouseY > 330 && mouseY < 380)
   {
