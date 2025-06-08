@@ -125,9 +125,13 @@ void draw()
   {
     int[] loc = ghost.getLoc();
     if (ghost.isAfraid())
+
       ghost.movePixel(1,pac);
     else
+    { 
+      if(ghost.getLoc()[0] % 2 == 0 || ghost.getLoc()[1] % 2 == 0){ghost.movePixel(1,pac);}
       ghost.movePixel(2,pac);
+    }
     if(Math.abs(ghost.getLoc()[0]-pac.getLocation()[0])<=2 && Math.abs(ghost.getLoc()[1]-pac.getLocation()[1])<=2)
     {
       if(!ghost.isAfraid() && immunityTimer == 0 && !invincible)
@@ -157,7 +161,7 @@ void draw()
   
   
   
-  if(powerUpTimer==360)
+  if(powerUpTimer > 0)
   {
    for(Ghost n : ghostList)
    {
@@ -286,7 +290,7 @@ void mouseClicked()
  } //<>//
  if(pacDead)
  {
-  if(mouseX > 300 && mouseX < 454 && mouseY > 260 && mouseY < 310)
+  if(mouseX > 300 && mouseX < 454 && mouseY > 260 && mouseY < 310) //<>//
   {  
       numPellets = 0;
       textSize(20);
@@ -451,7 +455,7 @@ public void drawTiles() {
 
 public void drawGhosts()
 {
- for(Ghost n : ghostList)
+ for(Ghost n : ghostList) //<>//
  {
   if (n.isAfraid()) {
     if (powerUpTimer<120 && (powerUpTimer/20==5 || powerUpTimer/20==3 || powerUpTimer/20==1))
