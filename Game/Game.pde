@@ -18,7 +18,7 @@ int lives = 3;
 static int screenWidth;
 static int screenHeight;
 int mode = 0;
-static int ghostMode = 0;
+static int ghostMode = 1;
 int ghostModeDuration = 0;
 boolean debug = false;
 static int framecount;
