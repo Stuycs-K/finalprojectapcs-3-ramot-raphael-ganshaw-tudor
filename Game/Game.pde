@@ -18,7 +18,7 @@ int lives = 3;
 static int screenWidth;
 static int screenHeight;
 int mode = 0;
-static int ghostMode = 0;
+static int ghostMode = 1;
 int ghostModeDuration = 0;
 boolean debug = false;
 static int framecount;
@@ -125,7 +125,6 @@ void draw()
   {
     int[] loc = ghost.getLoc();
     if (ghost.isAfraid())
-
       ghost.movePixel(1,pac);
     else
     { 
@@ -162,7 +161,8 @@ void draw()
   
   
 
-  if(powerUpTimer == 360)
+
+  if(powerUpTimer==361)
   {
    for(Ghost n : ghostList)
    {
@@ -246,7 +246,7 @@ void draw()
 
   }
   else if (mode == 1)
-  { //<>// //<>//
+  { 
     noStroke();
     background(0,0,255);
     fill(255,255,0);
@@ -263,27 +263,34 @@ void draw()
     text("Your goal is the collect as many pellets as you can and avoid the ghosts.",85,180);
     text("The big power pellets make the ghosts scared,",85,210);
     text("and you can eat them for points while they're blue.",85, 235);
-    text("Once you collect all pellets on the map, it'll reset so you can play more.",85,265); //<>//
+    text("Once you collect all pellets on the map, it'll reset so you can play more.",85,265);
     text("Press backspace to go back to the menu.",85,295);
     text("Press d to show the developer commands.",85,345);
     if(debug)
+
     {
       text("Press i to toggle invincibilty.",85,375);
       text("Press x to kill Pac Man.",85,405);
       text("Press r to reset to the menu.", 85, 435);
-      text("Press p to reduce pellet count to 10.",85,465); //<>// //<>// //<>//
+      text("Press p to reduce pellet count to 10.",85,465);
+
+    {
+      text("Press i to toggle invincibilty.",75,375);
+      text("Press x to kill Pac Man.",75,405);
+      text("Press r to reset to the menu.", 75, 435);
+      text("Press p to reduce pellet count to 10.",75,465);
     }
   }
 }
-
+}
 void mouseClicked()
 {
- if(mode == 0)
+ if(mode == 0) //<>//
  {
   if(mouseX > 300 && mouseX < 454 && mouseY > 260 && mouseY < 310)
   {
    mode = 2;  //<>// //<>//
-  }
+  } //<>//
   if(mouseX > 300 && mouseX < 454 && mouseY > 330 && mouseY < 380)
   {
     mode = 1;
@@ -448,7 +455,7 @@ public void drawTiles() {
         circle(i*tileSize+(tileSize/2),n*tileSize+(tileSize/2),tileSize/6);
       if (obj==2)
         circle(i*tileSize+(tileSize/2),n*tileSize+(tileSize/2),tileSize/2);
-    }
+    } //<>//
   }
 }
 
