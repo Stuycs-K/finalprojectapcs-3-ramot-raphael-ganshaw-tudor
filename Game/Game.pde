@@ -12,7 +12,6 @@ static int powerUpTimer = 0;
 int[] scaredColors = new int[] {0,0,255};
 boolean pacDead = false;
 int[] pacSpawn;
-int immunityTimer;
 static int numPellets;
 int lives = 3;
 static int screenWidth;
@@ -69,6 +68,7 @@ void draw()
   if(lives > 0 || mode != 2){pacDead = false;}
   if(numPellets == 0)
     {
+      delay(2000);
       int scoreNow = pac.getScore();
       textSize(20);
       int[][] mapArr = getMap(1);
@@ -134,7 +134,7 @@ void draw()
     }
     if(Math.abs(ghost.getLoc()[0]-pac.getLocation()[0])<=2 && Math.abs(ghost.getLoc()[1]-pac.getLocation()[1])<=2)
     {
-      if(!ghost.isAfraid() && immunityTimer == 0 && !invincible)
+      if(!ghost.isAfraid() && !invincible)
         {  
            lives--;
            if(lives > 0)
@@ -155,7 +155,6 @@ void draw()
   }
   if (lostLife) {
     delay(2000);
-    immunityTimer = 300;
     pac.setNode(map.getAt(pacSpawn));
     pac.setLoc(pac.getNode().getLocation());
     pac.setDirection("left");
@@ -166,6 +165,8 @@ void draw()
       ghostList.remove(0);
     }
     for(int i = 0; i < ghostCount; i++){ghostList.add(new Ghost(map,i+1));}
+    ghostMode = 1;
+    ghostModeDuration = 0;
   }
   
   
@@ -183,7 +184,6 @@ void draw()
   
   
   if(powerUpTimer > 0){fill(255,255,255);powerUpTimer--;}
-  if(immunityTimer > 0){immunityTimer--;}
   
   if(powerUpTimer == 0){
    pac.powerUp(false);
