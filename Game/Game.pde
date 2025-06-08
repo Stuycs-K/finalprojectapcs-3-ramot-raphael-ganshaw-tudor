@@ -162,7 +162,7 @@ void draw()
   
   
 
-  if(powerUpTimer > 0)
+  if(powerUpTimer == 360)
   {
    for(Ghost n : ghostList)
    {
@@ -208,16 +208,16 @@ void draw()
     stroke(255,0,0);
     strokeWeight(200);
     textSize(150);
-    text("You Died", 110,187);
+    text("You Died", 160,187);
     textSize(50);
-    text("Score: " + pac.getScore(), 290,250);
+    text("Score: " + pac.getScore(), 320,250);
     textSize(20);
     noStroke();
-    rect(300,260,684-530,50);
+    rect(330,260,684-500,50);
     fill(0);
     stroke(0);
     strokeWeight(50);
-    text("RESET",350,295);
+    text("RESET",400,295);
     
   }else if (mode == 0){
     noStroke();
@@ -230,19 +230,19 @@ void draw()
     stroke(255,0,0);
     strokeWeight(200);
     textSize(150);
-    text("Pac-Man", 110,187);
+    text("Pac-Man", 160,187);
     textSize(20);
     noStroke();
-    rect(300,260,684-530,50);
+    rect(330,260,684-500,50);
     fill(0);
     stroke(0);
     strokeWeight(50);
-    text("PLAY GAME",330,295);
+    text("PLAY GAME",380,295);
     noStroke();
     fill(255,255,0);
-    rect(300,330,684-530,50);
+    rect(330,330,684-500,50);
     fill(0);
-    text("INFO",355,365);
+    text("INFO",400,365);
 
   }
   else if (mode == 1)
@@ -257,21 +257,21 @@ void draw()
     stroke(255,0,0);
     strokeWeight(200);
     textSize(50);
-    text("How To Play: ", 80, 100);
+    text("How To Play: ", 90, 100);
     textSize(20);
-    text("You control the little yellow guy. Use the arrow keys to move him around.",75,150);
-    text("Your goal is the collect as many pellets as you can and avoid the ghosts.",75,180);
-    text("The big power pellets make the ghosts scared,",75,210);
-    text("and you can eat them for points while they're blue.",75, 235);
-    text("Once you collect all pellets on the map, it'll reset so you can play more.",75,265); //<>//
-    text("Press backspace to go back to the menu.",75,295);
-    text("Press d to show the developer commands.",75,345);
+    text("You control the little yellow guy. Use the arrow keys to move him around.",85,150);
+    text("Your goal is the collect as many pellets as you can and avoid the ghosts.",85,180);
+    text("The big power pellets make the ghosts scared,",85,210);
+    text("and you can eat them for points while they're blue.",85, 235);
+    text("Once you collect all pellets on the map, it'll reset so you can play more.",85,265); //<>//
+    text("Press backspace to go back to the menu.",85,295);
+    text("Press d to show the developer commands.",85,345);
     if(debug)
     {
-      text("Press i to toggle invincibilty.",75,375);
-      text("Press x to kill Pac Man.",75,405);
-      text("Press r to reset to the menu.", 75, 435);
-      text("Press p to reduce pellet count to 10.",75,465); //<>// //<>// //<>//
+      text("Press i to toggle invincibilty.",85,375);
+      text("Press x to kill Pac Man.",85,405);
+      text("Press r to reset to the menu.", 85, 435);
+      text("Press p to reduce pellet count to 10.",85,465); //<>// //<>// //<>//
     }
   }
 }
