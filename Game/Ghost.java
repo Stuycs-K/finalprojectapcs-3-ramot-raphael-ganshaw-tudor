@@ -10,6 +10,7 @@ private boolean isAfraid;
 private int direction;
 private Map map;
 private int[] colors;
+private int startTimer;
 
 private static int[] blinkyLoc;
 
@@ -25,40 +26,64 @@ public Ghost(Map map1, int type){
 
   map = map1;
   int[] mapDimensions = map1.mapDimensions();
-  while(location == null || location.getObject() != 5)
-  {
-    location = map1.getAt((int) (Math.random() * mapDimensions[0]),(int) (Math.random() * mapDimensions[1]));
-    loc = new int[]{location.getLocation()[0],location.getLocation()[1]};
-  }
   this.type = type;
-  if (type==1)
-    blinkyLoc = loc;
+  if (type==1) {
+    location = map.getAt(9,12);
+    loc = new int[]{location.getLocation()[0],location.getLocation()[1]};
+    direction = UP;
+    startTimer = 0;
+  }
+  else if (type==2) {
+    location = map.getAt(10,13);
+    loc = new int[]{location.getLocation()[0],location.getLocation()[1]};
+    direction = DOWN;
+    startTimer = 180;
+  }
+  else if (type==3) {
+    location = map.getAt(9,15);
+    loc = new int[]{location.getLocation()[0],location.getLocation()[1]};
+    direction = UP;
+    startTimer = 360;
+  }
+  else if (type==4) {
+    location = map.getAt(10,16);
+    loc = new int[]{location.getLocation()[0],location.getLocation()[1]};
+    direction = DOWN;
+    startTimer = 540;
+  }
+  
   isAfraid = false;
-  direction = directionList[(int) (Math.random() * 4)];
 }
 
 public void movePixel(int num, Pacman pac)
 {
-  if(location != null)
-  {
-     if (direction == UP) {
-        loc[1]-= num;
-      }
-      else if (direction == DOWN) {
-        loc[1]+= num;
-      }
-      else if (direction == LEFT) {
-         loc[0]-= num;
-         if(loc[0] < 0){loc[0] += Game.screenWidth;}
-      }
-      else if (direction == RIGHT) {
-        loc[0] += num;
-        if(loc[0] > Game.screenWidth){loc[0] -= Game.screenWidth;}
-      } 
-      
-
-      if(loc[0] == location.getLocation()[0] && loc[1] == location.getLocation()[1])
-       move(pac);
+  if(startTimer>0)
+    startTimer--;
+    
+  if (Arrays.equals(loc,map.getAt(8,14).getLocation()))
+    startTimer = -1;
+ 
+  if(loc[0] == location.getLocation()[0] && loc[1] == location.getLocation()[1]) {
+    // go up and down if they havent been released yet
+    if (startTimer>0)
+      turn180();
+    else
+      move(pac);
+  }
+  
+  if (direction == UP) {
+    loc[1]-= num;
+  }
+  else if (direction == DOWN) {
+    loc[1]+= num;
+  }
+  else if (direction == LEFT) {
+    loc[0]-= num;
+  if(loc[0] < 0){loc[0] += Game.screenWidth;}
+  }
+  else if (direction == RIGHT) {
+    loc[0] += num;
+    if(loc[0] > Game.screenWidth){loc[0] -= Game.screenWidth;}
   }
 }
 
@@ -95,69 +120,75 @@ public void move(Pacman pac) {
     
   int[] target = new int[2];
   int newDirection;
-  if (isAfraid) {
+  if (isAfraid && startTimer<0) {
     newDirection = directions.get((int)(Math.random()*directions.size()));
   }
   else {
-    if (Game.ghostMode==0) {//if in chase mode
-      //blinky
-      if (type==1) {
-        target = pac.getLocation();
-      }
-      //pinky
-      else if (type==2) {
-        if (pac.getDirection().equals("up"))
-          target = new int[]{pac.getLocation()[0]-Game.tileSize*4,pac.getLocation()[1]-Game.tileSize*4};
-        if (pac.getDirection().equals("down"))
-          target = new int[]{pac.getLocation()[0],pac.getLocation()[1]+Game.tileSize*4};
-        if (pac.getDirection().equals("left"))
-          target = new int[]{pac.getLocation()[0]-Game.tileSize*4,pac.getLocation()[1]};
-        if (pac.getDirection().equals("right"))
-          target = new int[]{pac.getLocation()[0]+Game.tileSize*4,pac.getLocation()[1]};
-      }
-      //inky
-      else if (type==3) {
-        int[] start = new int[2];
-        if (pac.getDirection().equals("up"))
-          start = new int[]{pac.getLocation()[0]-Game.tileSize*2,pac.getLocation()[1]-Game.tileSize*2};
-        else if (pac.getDirection().equals("down"))
-          start = new int[]{pac.getLocation()[0],pac.getLocation()[1]+Game.tileSize*2};
-        else if (pac.getDirection().equals("left"))
-          start = new int[]{pac.getLocation()[0]-Game.tileSize*2,pac.getLocation()[1]};
-        else if (pac.getDirection().equals("right"))
-          start = new int[]{pac.getLocation()[0]+Game.tileSize*2,pac.getLocation()[1]};
-        target = new int[]{start[0]*2-pac.getLocation()[0],start[1]*2-pac.getLocation()[1]};
-      }
-      //clyde
-      else if (type==4) {
-        if(calcDist(loc,pac.getLocation())>8*Game.tileSize)
+    // leave the ghost house
+    if (startTimer==0)
+      target = map.getAt(7,14).getLocation();
+    else {
+      if (Game.ghostMode==0) {//if in chase mode
+        //blinky
+        if (type==1) {
           target = pac.getLocation();
-        else
+        }
+        //pinky
+        else if (type==2) {
+          if (pac.getDirection().equals("up"))
+            target = new int[]{pac.getLocation()[0]-Game.tileSize*4,pac.getLocation()[1]-Game.tileSize*4};
+          if (pac.getDirection().equals("down"))
+            target = new int[]{pac.getLocation()[0],pac.getLocation()[1]+Game.tileSize*4};
+          if (pac.getDirection().equals("left"))
+            target = new int[]{pac.getLocation()[0]-Game.tileSize*4,pac.getLocation()[1]};
+          if (pac.getDirection().equals("right"))
+            target = new int[]{pac.getLocation()[0]+Game.tileSize*4,pac.getLocation()[1]};
+        }
+        //inky
+        else if (type==3) {
+          int[] start = new int[2];
+          if (pac.getDirection().equals("up"))
+            start = new int[]{pac.getLocation()[0]-Game.tileSize*2,pac.getLocation()[1]-Game.tileSize*2};
+          else if (pac.getDirection().equals("down"))
+            start = new int[]{pac.getLocation()[0],pac.getLocation()[1]+Game.tileSize*2};
+          else if (pac.getDirection().equals("left"))
+            start = new int[]{pac.getLocation()[0]-Game.tileSize*2,pac.getLocation()[1]};
+          else if (pac.getDirection().equals("right"))
+            start = new int[]{pac.getLocation()[0]+Game.tileSize*2,pac.getLocation()[1]};
+          target = new int[]{start[0]*2-pac.getLocation()[0],start[1]*2-pac.getLocation()[1]};
+        }
+        //clyde
+        else if (type==4) {
+          if(calcDist(loc,pac.getLocation())>8*Game.tileSize)
+            target = pac.getLocation();
+          else
+            target = new int[]{0,Game.screenHeight};
+        }
+      }
+      else if (Game.ghostMode==1) {
+        if (type==1)
+          target = new int[]{Game.screenWidth,0};
+        else if (type==2)
+          target = new int[]{0,0};
+        else if (type==3)
+          target = new int[]{Game.screenWidth,Game.screenHeight};
+        else if (type==4)
           target = new int[]{0,Game.screenHeight};
       }
     }
-    else if (Game.ghostMode==1) {
-      if (type==1)
-        target = new int[]{Game.screenWidth,0};
-      else if (type==2)
-        target = new int[]{0,0};
-      else if (type==3)
-        target = new int[]{Game.screenWidth,Game.screenHeight};
-      else if (type==4)
-        target = new int[]{0,Game.screenHeight};
-    }
-    
+     
+      
     double[] distances = new double[directions.size()];
     for (int i = 0; i<directions.size(); i++) {
-        int dir = directions.get(i);
-        if (dir==UP)
-          distances[i] = calcDist(target,new int[]{loc[0],loc[1]-Game.tileSize});
-        else if (dir==DOWN)
-          distances[i] = calcDist(target,new int[]{loc[0],loc[1]+Game.tileSize});
-        else if (dir==LEFT)
-          distances[i] = calcDist(target,new int[]{loc[0]-Game.tileSize,loc[1]});
-        else if (dir==RIGHT)
-          distances[i] = calcDist(target,new int[]{loc[0]+Game.tileSize,loc[1]});
+      int dir = directions.get(i);
+      if (dir==UP)
+        distances[i] = calcDist(target,new int[]{loc[0],loc[1]-Game.tileSize});
+      else if (dir==DOWN)
+        distances[i] = calcDist(target,new int[]{loc[0],loc[1]+Game.tileSize});
+      else if (dir==LEFT)
+        distances[i] = calcDist(target,new int[]{loc[0]-Game.tileSize,loc[1]});
+      else if (dir==RIGHT)
+        distances[i] = calcDist(target,new int[]{loc[0]+Game.tileSize,loc[1]});
     }
     newDirection = directions.get(0);
     double shortestDist = distances[0];
@@ -179,15 +210,22 @@ public void move(Pacman pac) {
 }
 
 public void turn180() {
-  if (direction==UP)
+  if (direction==UP) {
     location = location.getDown();
-  else if (direction==DOWN)
+    direction=DOWN;
+  }
+  else if (direction==DOWN) {
     location = location.getUp();
-  else if (direction==LEFT)
+    direction=UP;
+  }
+  else if (direction==LEFT) {
     location = location.getRight();
-  else if (direction==RIGHT)
+    direction=RIGHT;
+  }
+  else if (direction==RIGHT) {
     location = location.getLeft();
-  direction = (direction+2)%4;
+    direction=LEFT;
+  }
 }
 
 public double calcDist(int[] loc1, int[] loc2) {
@@ -202,7 +240,7 @@ public void die(){
     loc = location.getLocation();
   }
   isAfraid = false;
-  direction = directionList[(int) (Math.random() * 4)];
+  startTimer = 0;
 }
 
 
@@ -214,7 +252,10 @@ public MapNode getDirection(int heading)
 {
   if(location == null){return null;}
   if(heading == UP){return location.getUp();}
-  if(heading == DOWN){return location.getDown();}
+  if(heading == DOWN){
+    if (location.getDown()!=null && location.getDown().getObject()!=3)
+      return location.getDown();
+  }
   if(heading == LEFT){return  location.getLeft();}
   if(heading == RIGHT){return location.getRight();}
   return null;
