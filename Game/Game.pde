@@ -9,7 +9,6 @@ ArrayList<Ghost> ghostList = new ArrayList<Ghost>();
 Pacman pac;
 static int tileSize = 30;
 static int powerUpTimer = 0;
-int[] scaredColors = new int[] {0,0,255};
 boolean pacDead = false;
 int[] pacSpawn;
 static int numPellets;
@@ -242,7 +241,7 @@ void draw()
     background(0,0,255);
     fill(255,255,0);
     rect(20,20,width-40,height-40);
-    fill(0);
+    fill(0); //<>//
     rect(70,45,width-140,height-90);
     fill(255,255,0);
     stroke(255,0,0);
@@ -267,7 +266,7 @@ void draw()
   { 
     noStroke();
     background(0,0,255);
-    fill(255,255,0);
+    fill(255,255,0); //<>//
     rect(20,20,width-40,height-40);
     fill(0);
     rect(70,45,width-140,height-90);
@@ -278,7 +277,7 @@ void draw()
     text("How To Play: ", 90, 100);
     textSize(20);
     text("You control the little yellow guy. Use the arrow keys to move him around.",85,150);
-    text("Your goal is the collect as many pellets as you can and avoid the ghosts.",85,180);
+    text("Your goal is the collect as many pellets as you can and avoid the ghosts.",85,180); //<>//
     text("The big power pellets make the ghosts scared,",85,210);
     text("and you can eat them for points while they're blue.",85, 235);
     text("Once you collect all pellets on the map, it'll reset so you can play more.",85,265);
