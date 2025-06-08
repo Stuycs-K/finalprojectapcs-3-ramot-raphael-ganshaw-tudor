@@ -35,6 +35,15 @@ public class Pacman {
     public String getDirection() {
         return direction;
     }
+    
+    public int getDir()
+    {
+     if(direction.equals("up")){return 0;}
+     if(direction.equals("left")){return 1;}
+     if(direction.equals("down")){return 2;}
+     if(direction.equals("right")){return 3;}
+     return 9;
+    }
     public void changeDirection() {
       if (node.getObject()==1)
       {  
