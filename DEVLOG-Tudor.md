@@ -50,3 +50,6 @@ Today I added an info screen to the menu screen so that people could learn how t
 
 ## 2025-06-07 - Gave up on pathfinding
 Today I gave up on pathfinding, because it's impossible. For whatever reason the ghost won't do what it's meant to do despite the fact that it definitely should, and I have no clue what the issue it. Ghosts moving randomly works well enough. Besides giving up on that, I did the README and updating ghosts so they flash when the power up time is almost over. Luckily Raphael was already working on that and managed to do it better than me. Everybody say thank you Raphael. Besides that, I fixed bugs with the ghosts turning unafraid if they died while afraid, and with them moving through walls after being unafraid. I also added in new sprites for each of the ghosts that update with where they're looking, and animated Pac Man sprites. I tried to add the animation of him popping when a ghost gets him, but that has yet to work.
+
+## 2025-06-08 - Video Editing
+Today was mostly just editing the final video, fixing last minute bugs, and redoing the UML diagrams.

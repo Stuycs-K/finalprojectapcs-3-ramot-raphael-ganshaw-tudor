@@ -345,7 +345,6 @@ void mouseClicked()
           ghostList.remove(0);
         }
       for(int i = 0; i < ghostCount; i++){ghostList.add(new Ghost(map,i+1));}
-      for(Ghost g : ghostList){g.move(pac);}
       lives = 3;
       pacDead = false;
       
@@ -412,7 +411,6 @@ void keyPressed() {
           ghostList.remove(0);
         }
       for(int i = 0; i < ghostCount; i++){ghostList.add(new Ghost(map,i+1));}
-      for(Ghost g : ghostList){g.move(pac);}
       lives = 3;
       pacDead = false;
       
