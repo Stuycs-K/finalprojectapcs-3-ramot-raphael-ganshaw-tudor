@@ -5,7 +5,7 @@ This document must be updated daily every time you finish a work session.
 ## Raphael Ramot
 
 ### 2025-05-22 - Planning
-Tudor was absent so the UML diagrams are not complete with a main/game class. I spent maybe 20 minutes learning about branches and creating mine. The rest was spent doing planning for the pac-man class. 
+Tudor was absent so the UML diagrams are not complete with a main/game class. I spent maybe 20 minutes learning about branches and creating mine. The rest was spent doing planning for the pac-man class.
 
 ### 2025-05-23 - Branching and Pac-man
 20 mins learning and testing how to branch and merge. 20 minutes writing the basic Pac-man class.
@@ -44,3 +44,5 @@ I added the animation for Pac-man's death, the flashing colors of the ghosts at 
 
 ### 2025-06-08 - Bug Fixes and video
 I only worked on small bug fixes where the game didn't work exactly as intended in certain situations, such as when the developer command for reset is used. I also filmed my part of the video.
+
+I, Tudor Ganshaw, believe that this document accurately reflects the contributions of my teammate.

@@ -5,7 +5,7 @@
 PERIOD 3
 
 Raphael Ramot, Tudor Ganshaw
-    
+
 Maze Men (tentative name, may be changed at future discretion)
 
 ---------------------------
@@ -21,14 +21,14 @@ The map will be done using a node-edge system (or an array if the node-edge syst
 ------
    Features that we wish to include by the end are different movement for each of the ghosts, a menu screen, a score system, multiple different levels, changing sprites based on state, working power ups, bonus point pellets.
 
-     
+
 # Project Design
 
 ![Pac-Man Class Diagram](Pac-manClass.png?raw=true "Raphael's UML Class Diagram")
 
-![Ghost & Map Class Diagram](TudorUMLDiagramFinal.png?raw=true "Tudor's UML Class Diagram")
+![Ghost & Map Class Diagram](GhostandMap.png?raw=true "Tudor's UML Class Diagram")
 
-    
+
 # Intended pacing:
 
 
@@ -54,4 +54,3 @@ General Timeline:
 6. Multiple levels & switching between them
 7. Sprite switching based on state
 8. Ghost AI based on color
-
