@@ -3,6 +3,7 @@ This is to explain how I'll be doing the map stuff. Can be changed later, obviou
 0 - Empty Space
 1 - Pellet
 2 - Power Up
+3 - Ghost House Wall
 5 - Ghost Spawning Area
 6 - Wall
 
