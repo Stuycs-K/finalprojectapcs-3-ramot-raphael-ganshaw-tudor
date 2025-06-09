@@ -24,9 +24,7 @@ The map will be done using a node-edge system (or an array if the node-edge syst
 
 # Project Design
 
-![Pac-Man Class Diagram](Pac-manClass.png?raw=true "Raphael's UML Class Diagram")
-
-![Ghost & Map Class Diagram](GhostandMap.png?raw=true "Tudor's UML Class Diagram")
+![Entire UML Diagram](finalUML.png?raw=true "Entire UML Diagram")
 
 
 # Intended pacing:
