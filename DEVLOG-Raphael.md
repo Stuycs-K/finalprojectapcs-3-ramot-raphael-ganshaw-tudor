@@ -5,7 +5,7 @@ This document must be updated daily every time you finish a work session.
 ## Raphael Ramot
 
 ### 2025-05-22 - Planning
-Tudor was absent so the UML diagrams are not complete with a main/game class. I spent maybe 20 minutes learning about branches and creating mine. The rest was spent doing planning for the pac-man class. 
+Tudor was absent so the UML diagrams are not complete with a main/game class. I spent maybe 20 minutes learning about branches and creating mine. The rest was spent doing planning for the pac-man class.
 
 ### 2025-05-23 - Branching and Pac-man
 20 mins learning and testing how to branch and merge. 20 minutes writing the basic Pac-man class.
@@ -33,3 +33,5 @@ Worked together to write an AI program that would find the shortest path to pacm
 
 ## 2025-06-06 - Ghost area and Images
 I made the ghost area inaccesible to pac-man and changed its color. I added real types to each of the ghosts so they could have PImages instead of circles, and uploaded the images to the game.
+
+I, Tudor Ganshaw, believe that this document accurately reflects the contributions of my teammate.
