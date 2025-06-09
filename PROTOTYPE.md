@@ -1,6 +1,7 @@
 
 # Technical Details:
 
+VIDEO LINK: https://www.bit.ly/pacvideofinal
 
 PERIOD 3
 
