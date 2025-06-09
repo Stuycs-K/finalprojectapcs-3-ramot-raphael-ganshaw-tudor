@@ -156,7 +156,7 @@ public void move(Pacman pac) {
             start = new int[]{pac.getLocation()[0]-Game.tileSize*2,pac.getLocation()[1]};
           else if (pac.getDirection().equals("right"))
             start = new int[]{pac.getLocation()[0]+Game.tileSize*2,pac.getLocation()[1]};
-          target = new int[]{start[0]*2-pac.getLocation()[0],start[1]*2-pac.getLocation()[1]};
+          target = new int[]{start[0]*2-blinkyLoc[0],start[1]*2-blinkyLoc[1]};
         }
         //clyde
         else if (type==4) {
