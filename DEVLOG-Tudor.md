@@ -53,3 +53,5 @@ Today I gave up on pathfinding, because it's impossible. For whatever reason the
 
 ## 2025-06-08 - Video Editing
 Today was mostly just editing the final video, fixing last minute bugs, and redoing the UML diagrams.
+
+I, Raphael Ramot, believe that this document accurately reflects the contributions of my teammate.
